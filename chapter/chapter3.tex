@@ -14,6 +14,24 @@ Das bedeutet, dass der Algorithmus möglichst schmale Bäume zeichnen soll. Jedo
 nicht eingeschränkt. Stattdessen bestimmt der Baum selbst seine Höhe. \cite[]{q1}
 
 \subsection{Ablauf}
+Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur wie folgt definiert sein: Sie benötigt eine Struktur die symbolisch für ein Knoten des Baums steht. Diese Knoten-Struktur muss hierbei ihren Vater kennen, auf ihre Kinder zugreifen können, ihre Position speichern können. Diese Hilfsvariable wird dazu benutzt, um das nächste abzuarbeitende Kind eines Knoten zu identifizieren. 
+
+In Java könnte diese Struktur beispielsweise wie folgt aussehen:
+\begin{lstlisting}
+class Knoten {
+	Knoten vater;
+	Knoten[] kinder;
+	int hoehe;
+	int x, y;
+}
+\end{lstlisting}
+Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und Höhe des Baumes. Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert: Ein Array (später Positions-Array genannt), die die jeweils nächst freie X-Position einer Ebene des Baums beinhaltet. Hiernach wird über die Baumstruktur der Wurzel, in der Pre-Order-Traversierung, traversiert. Nun werden die X und Y Attribute der Knoten wie folgt bestimmt und gesetzt:
+
+Der derzeitige Knoten bekommt als X-Position den Wert aus dem Positions-Array, in Abhängigkeit von seiner Höhe im Baum. Hiernach wird die Zahl im Positions-Array inkrementiert. Die Y-Position des Knoten wird nun in Abhängigkeit zur Höhe des Knoten mit der folgenden Formel berechnet: y := 2 * Höhe + 1.
+
+Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
+
+Nach dem Durchlaufen aller Knoten des Baumes sind alle X und Y-Koordinate gesetzt und der Baum kann gezeichnet werden.
 
 \subsection{Vor- und Nachteile}
 
