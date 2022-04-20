@@ -25,9 +25,15 @@ class Knoten {
 	int x, y;
 }
 \end{lstlisting}
-Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und Höhe des Baumes. Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert: Ein Array (später Positions-Array genannt), die die jeweils nächst freie X-Position einer Ebene des Baums beinhaltet. Hiernach wird über die Baumstruktur der Wurzel, in der Pre-Order-Traversierung, traversiert. Nun werden die X und Y Attribute der Knoten wie folgt bestimmt und gesetzt:
+Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und Höhe des Baumes.
+Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert:
+Ein Array (später Positions-Array genannt), die die jeweils nächst freie X-Position einer Ebene des Baums beinhaltet.
+Hiernach wird über die Baumstruktur der Wurzel, in der Pre-Order-Traversierung, traversiert.
+Nun werden die X und Y Attribute der Knoten wie folgt bestimmt und gesetzt:
 
-Der derzeitige Knoten bekommt als X-Position den Wert aus dem Positions-Array, in Abhängigkeit von seiner Höhe im Baum. Hiernach wird die Zahl im Positions-Array inkrementiert. Die Y-Position des Knoten wird nun in Abhängigkeit zur Höhe des Knoten mit der folgenden Formel berechnet: y := 2 * Höhe + 1.
+Der derzeitige Knoten bekommt als X-Position den Wert aus dem Positions-Array, in Abhängigkeit von seiner Höhe im Baum.
+Hiernach wird die Zahl im Positions-Array inkrementiert. Die Y-Position des Knoten wird nun in Abhängigkeit zur Höhe des Knoten
+mit der folgenden Formel berechnet: $$y := 2 * HoeheDesKnotens + 1$$
 
 Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
 
