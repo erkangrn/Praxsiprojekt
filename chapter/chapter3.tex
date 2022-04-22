@@ -14,17 +14,11 @@ Das bedeutet, dass der Algorithmus möglichst schmale Bäume zeichnen soll. Jedo
 nicht eingeschränkt. Stattdessen bestimmt der Baum selbst seine Höhe. \cite[]{q1}
 
 \subsection{Ablauf}
-Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur wie folgt definiert sein: Sie benötigt eine Struktur die symbolisch für ein Knoten des Baums steht. Diese Knoten-Struktur muss hierbei ihren Vater kennen, auf ihre Kinder zugreifen können, ihre Position speichern können. Diese Hilfsvariable wird dazu benutzt, um das nächste abzuarbeitende Kind eines Knoten zu identifizieren. 
+Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur 
+wie folgt definiert sein: Sie benötigt eine Struktur die symbolisch für ein Knoten des Baums steht. 
+Diese Knoten-Struktur muss hierbei ihren Vater kennen, auf ihre Kinder zugreifen können, ihre Position und
+Höhe im Baum speichern können.
 
-In Java könnte diese Struktur beispielsweise wie folgt aussehen:
-\begin{lstlisting}
-class Knoten {
-	Knoten vater;
-	Knoten[] kinder;
-	int hoehe;
-	int x, y;
-}
-\end{lstlisting}
 Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und Höhe des Baumes.
 Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert:
 Ein Array (später Positions-Array genannt), die die jeweils nächst freie X-Position einer Ebene des Baums beinhaltet.
@@ -38,6 +32,58 @@ mit der folgenden Formel berechnet: $$y := 2 * HoeheDesKnotens + 1$$
 Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
 
 Nach dem Durchlaufen aller Knoten des Baumes sind alle X und Y-Koordinate gesetzt und der Baum kann gezeichnet werden.
+
+\subsection{Implementierung in Java}
+Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur
+implementiert. Zusätzlich wurden Methoden hinzugefügt, die Beispielsweise
+ein einfaches traversieren über den Baum ermöglichen oder zum Setzen von Kindern.
+
+Diese Klasse sieht wie folgt aus:
+
+\begin{lstlisting}
+static class Knoten {
+	Knoten vater;
+	Knoten[] kinder;
+	int hoehe;
+	int x, y;
+
+	public void traversPreOrder(Consumer<Knoten> cons) { /*...*/ }
+
+	public void setChilds(Knoten... childs) { /*...*/ }
+
+	// ...
+}
+\end{lstlisting}
+
+Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implemeniert werden.
+Hierzu wurde eine Prozedur namens 'algorithmus1' erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
+und die Höhe des Baums. Die weitere Implementierung wird wie zuvor beschrieben durchgeführt. Eine mögliche Implementierung
+kann wie folgt aussehen:
+
+\begin{lstlisting}
+public static void algorithmus1(Knoten root, int maximaleHoehe) {
+	int[] nextX = new int[maximaleHoehe];
+	for(int i = 0; i < nextX.length; i++)
+		nextX[i] = 1;
+
+	root.traversPreOrder(knoten -> {
+		knoten.x = nextX[knoten.hoehe];
+		knoten.y = 2 * knoten.hoehe + 1;
+		
+		nextX[knoten.hoehe] += 1;
+	});
+}
+\end{lstlisting}
+
+Wird diese Prozedur mit einer Baumstruktur aufgerufen, so werden alle X und Y-Koordinaten gesetzt.
+Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_algo_1} betrachet werden.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=7cm, height=10cm]{abbildungen/baum_algo_1}
+    \caption{Gezeichneter Baum durch den ersten Algorithmus}
+    \label{pic:baum_algo_1} 
+\end{figure}
 
 \subsection{Vor- und Nachteile}
 
