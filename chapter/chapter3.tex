@@ -86,7 +86,13 @@ Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_al
 \end{figure}
 
 \subsection{Vor- und Nachteile}
-
+Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-Implementierung des naiven Algorithmus von Wetherell und Shannon
+gezeichnet wurde.
+Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
+Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Sieht man sich die Beziehung zwischen dem Vater H und seinen Kindern
+I und J an, erkennt man, dass dieser Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nicht über die Daten aus, welche die Knoten
+beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. Deshalb definieren
+Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Bäume zeichnen erfüllen müssen. 
 \section{Verbesserter Algorithmus von Wetherell und Shannon}
 
 \subsection{Ablauf}
