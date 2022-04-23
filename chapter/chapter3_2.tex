@@ -10,6 +10,27 @@ Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen 
 \end{quotation}
 
 In einem Binärbaum hat jeder Knoten maximal ein linkes und maximal ein rechtes Kind. Daher ist es auch logisch, dass jedes linke Kind 
-links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden soll. Die zweite weitere Anforderung 
+links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden soll. Zudem soll jeder Vater zentriert über seinen Kindern
+stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderung fest.
+
+\begin{quotation}
+	\textit{Aesthetic 3:} A parent should be centered over its children.\cite[]{q1}
+\end{quotation}
+
 
 \subsection{Vor- und Nachteile}
+Durch das Erfüllen der Anforderung, dass jeder Vater über seinen Kindern zentriert werden soll, kann der verbesserte Algorithmus gegen
+die Anforderung an das physikalische Limit verstoßen. Dies geschieht, da der Algorithmus die Zentrierung der Väter erzwingt.
+Abbildung \todo{Abbildung einfügen} zeigt jenes Verhalten. Daraus schließen die beiden Autoren auf folgendes Theorem:
+
+\begin{quotation}
+	\textit{Theorem (Uglification):} Minimum width drawings exist which violate Aesthetic 3 by arbitrary amounts.\cite[]{q1}
+\end{quotation}
+
+Bei der schmaleren Variante des Baumes auf Abbildung XXX ist der Vater von Knoten A nicht zentriert über beiden Kindern und verstößt somit 
+gegen Aesthetic 3. Die weitere Variante verstößt gegen das physikalische Limit, da der Baum nicht maximal schmal ist. 
+Dies stellt hier einen Trade-off zwischen den beiden Anforderungen dar. Es ist somit nicht möglich einen maximal schmalen Baum zu zeichnen,
+der auch Aesthetic 3 erfüllt. 
+
+Zudem ist der verbesserte Algorithmus nicht in der Lage beliebige Bäume zu zeichnen, sondern ausschließlich Binärbäume. Jedoch kann er durch
+einige geeignete Erweiterungen so modifiziert werden, dass er auch in der Lage wäre beliebige Bäume zu zeichnen.
