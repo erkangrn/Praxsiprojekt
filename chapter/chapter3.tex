@@ -7,11 +7,23 @@ Das Paper “Tidy Drawings of Trees” von Charles Wetherell und Alfred Shannon 
 welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen.
 Der erste Algorithmus, der von den beiden Autoren beschrieben und vorgestellt wird, ist ein naiver Algorithmus 
 zum Zeichnen von Bäumen. Dieser Algorithmus soll dabei zwei Anforderungen erfüllen. Die erste Anforderung wird dabei
-an die Ästhetik des gezeichneten Baumes gestellt. Alle Knoten, die dieselbe Höhe haben, sollen sich auf einer horizontalen
+an die Ästhetik des gezeichneten Baumes gestellt. 
+\begin{quotation}
+	\textit{Aesthetic 1:} Nodes of a tree at the same height should lie
+	along a straight line, and the straight lines defining the levels
+	should be parallel.\cite[]{q1}
+\end{quotation}
+Alle Knoten, die dieselbe Höhe haben, sollen sich auf einer horizontalen
 Linie befinden. Jede Höhe hat dabei eine Linie, auf welcher sich die Knoten befinden sollen und diese Linien sollen alle
 parallel zueinander sein. Außerdem soll der Algorithmus beim Zeichnen eines Baumes ein physikalisches Limit einhalten.
+\begin{quotation}
+	\textit{Physical limit:} Tree drawings should occupy as little width
+	as possible (the height of a tree drawing is fixed by the tree
+	itself).\cite[]{q1}
+\end{quotation}
 Das bedeutet, dass der Algorithmus möglichst schmale Bäume zeichnen soll. Jedoch wird die Höhe des Baumes durch diese Anforderungen
 nicht eingeschränkt. Stattdessen bestimmt der Baum selbst seine Höhe. \cite[]{q1}
+
 
 \subsection{Ablauf}
 Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur 
@@ -90,12 +102,22 @@ Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-I
 gezeichnet wurde.
 Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
 Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Sieht man sich die Beziehung zwischen dem Vater H und seinen Kindern
-I und J an, erkennt man, dass dieser Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nicht über die Daten aus, welche die Knoten
+I und J an, erkennt man, dass dieser Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten aus, welche die Knoten
 beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. Deshalb definieren
-Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Bäume zeichnen erfüllen müssen. 
-\section{Verbesserter Algorithmus von Wetherell und Shannon}
+Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäume erfüllen müssen.
 
-\subsection{Ablauf}
+\section{Verbesserter Algorithmus von Wetherell und Shannon}
+Wetherell und Shannon stellen in ihrem Paper einen weiteren, verbesserten Algorithmus zum Zeichnen von Bäumen vor, welcher jedoch
+ausschließlich Binärbäume zeichnen kann. Dieser Algorithmus weist die Nachteile des naiven Algorithmus nicht mehr auf.
+Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen soll.   
+
+\begin{quotation}
+	\textit{Aesthetic 2:} In a binary tree, each left son should be positioned
+	left of its father and each right son right of its father.\cite[]{q1}
+\end{quotation}
+
+In einem Binärbaum hat jeder Knoten maximal ein linkes und maximal ein rechtes Kind. Daher ist es auch logisch, dass jedes linke Kind 
+links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden soll. Die zweite weitere Anforderung 
 
 \subsection{Vor- und Nachteile}
 
