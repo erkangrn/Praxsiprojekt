@@ -41,17 +41,18 @@ ein einfaches traversieren über den Baum ermöglichen oder zum Setzen von Kinde
 Diese Klasse sieht wie folgt aus:
 
 \begin{lstlisting}
-static class Knoten {
-	Knoten vater;
-	Knoten[] kinder;
-	int hoehe;
-	int x, y;
+class Knoten {
+	private Knoten father;
+	private Knoten[] childs;
+	private int hoehe;
+	private int x, y;
+	private char data;
 
 	public void traversPreOrder(Consumer<Knoten> cons) { /*...*/ }
 
 	public void setChilds(Knoten... childs) { /*...*/ }
 
-	// ...
+	// Getter, Setter, weitere Hilfsmethoden...
 }
 \end{lstlisting}
 
@@ -61,16 +62,16 @@ und die Höhe des Baums. Die weitere Implementierung wird wie zuvor beschrieben 
 kann wie folgt aussehen:
 
 \begin{lstlisting}
-public static void algorithmus1(Knoten root, int maximaleHoehe) {
+public static void algorithmus1(Knoten wurzel, int maximaleHoehe) {
 	int[] nextX = new int[maximaleHoehe];
 	for(int i = 0; i < nextX.length; i++)
 		nextX[i] = 1;
-
-	root.traversPreOrder(knoten -> {
-		knoten.x = nextX[knoten.hoehe];
-		knoten.y = 2 * knoten.hoehe + 1;
+	
+	wurzel.traversPreOrder(knoten -> {
+		knoten.setX(nextX[knoten.getHoehe()]);
+		knoten.setY(2 * knoten.getHoehe() + 1);
 		
-		nextX[knoten.hoehe] += 1;
+		nextX[knoten.getHoehe()] += 1;
 	});
 }
 \end{lstlisting}
