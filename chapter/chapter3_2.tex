@@ -60,9 +60,9 @@ so wurde der linke bzw. rechte Teilbaum fertig abgearbeitet.
 Wird ein Knoten erstmalig Besucht, so wird zu ModifikatorSumme der spezifische Knoten-Modifikator addiert. 
 
 Da die Pre-Order Traversierung vorgibt, erst den linken Teilbaum, dann den Knoten und zum Schluss den rechten Teilbaum zu besuchen,
-wird zunächst beginnend von der Wurzel aus, der am weitesten links unten stehende Knoten besucht. Abbildung XXX zeigt einen Baum,
-welcher mit dem verbesserten Algorithmus gezeichnet wurde. In diesem Beispiel würden wir bei der Wurzel starten und nach Knoten D laufen.
-Auf dem Weg dorthin werden die Modifikatoren von A und B auf die globale ModifikatorSumme addiert.
+wird zunächst beginnend von der Wurzel aus, der am weitesten links unten stehende Knoten besucht. Abbildung \ref{pic:baum_algo_2}
+zeigt einen Baum, welcher mit dem verbesserten Algorithmus gezeichnet wurde. In diesem Beispiel würden wir bei der Wurzel starten 
+und nach Knoten D laufen. Auf dem Weg dorthin werden die Modifikatoren von A und B auf die globale ModifikatorSumme addiert.
 Danach wird die x-Koordinate des Knotens entweder auf die nächste freie x-Koordinate auf der Höhe des Knotens gesetzt oder auf den
 Wert der vorläufigen x-Koordinate addiert mit der ModifikatorSumme. Dabei wird der kleinere der beiden Werte genutzt, um sicherzustellen,
 dass der Knoten möglichst weit links ist. Wenn der Knoten einen linken Sohn hat und die x-Koordinate des Sohnes größer ist als
@@ -80,19 +80,33 @@ indem die x-Koordinate mit einem Offset (hier zwei) addiert wird.
 
 \subsection{Implementierung in Java}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.10]{abbildungen/baum_algo_2}
+    \caption{Gezeichneter Baum durch den verbesserten Algorithmus}
+    \label{pic:baum_algo_2} 
+\end{figure}
+
 \subsection{Vor- und Nachteile}
 Durch das Erfüllen der Anforderung, dass jeder Vater über seinen Kindern zentriert werden soll, kann der verbesserte Algorithmus gegen
 die Anforderung an das physikalische Limit verstoßen. Dies geschieht, da der Algorithmus die Zentrierung der Väter erzwingt.
-Abbildung \todo{Abbildung einfügen} zeigt jenes Verhalten. Daraus schließen die beiden Autoren auf folgendes Theorem:
+Abbildung \ref{pic:baum_theorem_uglification} zeigt jenes Verhalten. Daraus schließen die beiden Autoren auf folgendes Theorem:
 
 \begin{quotation}
 	\textit{Theorem (Uglification):} Minimum width drawings exist which violate Aesthetic 3 by arbitrary amounts.\cite[]{q1}
 \end{quotation}
 
-Bei der schmaleren Variante des Baumes auf Abbildung XXX ist der Vater von Knoten A nicht zentriert über beiden Kindern und verstößt somit 
-gegen Aesthetic 3. Die weitere Variante verstößt gegen das physikalische Limit, da der Baum nicht maximal schmal ist. 
-Dies stellt hier einen Trade-off zwischen den beiden Anforderungen dar. Es ist somit nicht möglich einen maximal schmalen Baum zu zeichnen,
-der auch Aesthetic 3 erfüllt. 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.75]{abbildungen/baum_theorem_uglification}
+    \caption{Beispiel für das Theorem\cite[]{q1}}
+    \label{pic:baum_theorem_uglification} 
+\end{figure}
+
+Bei der schmaleren Variante des Baumes auf Abbildung \ref{pic:baum_theorem_uglification} ist der Vater von Knoten A nicht zentriert
+über beiden Kindern und verstößt somit gegen Aesthetic 3. Die weitere Variante verstößt gegen das physikalische Limit, da der Baum nicht
+maximal schmal ist. Dies stellt hier einen Trade-off zwischen den beiden Anforderungen dar. Es ist somit nicht möglich einen maximal schmalen
+Baum zu zeichnen, der auch Aesthetic 3 erfüllt. 
 
 Zudem ist der verbesserte Algorithmus nicht in der Lage beliebige Bäume zu zeichnen, sondern ausschließlich Binärbäume. Jedoch kann er durch
 einige geeignete Erweiterungen so modifiziert werden, dass er auch in der Lage wäre beliebige Bäume zu zeichnen.
