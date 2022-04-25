@@ -17,6 +17,68 @@ stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderu
 	\textit{Aesthetic 3:} A parent should be centered over its children.\cite[]{q1}
 \end{quotation}
 
+Im Folgenden wird direkt die modifizierte Version des verbesserten Algorithmus betrachtet. Dafür wird die zweite While-Schleife des Programmcodes
+mit der Fig. 9 \cite[A modification of Algorithm 3]{q1} ersetzt.
+
+\subsection{Ablauf}
+
+Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase werden die vorläufigen X-Koordinaten der einzelnen Knoten bestimmt.
+In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
+
+Dieser Algorithmus besitzt zwei Eingabeparameter, nämlich die Wurzel des Baumes und die Höhe des Baumes. Zu Beginn werden zwei
+ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge ‘Höhe des Baumes’.
+Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
+Zudem wird eine Variable namens ‘ModifikatorSumme’ deklariert und mit null initialisiert.
+
+Nun wird über die Baumstruktur in der Post-Order traversiert. Dabei werden die vorläufigen X-Koordinaten der Knoten wie folgt bestimmt:
+Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
+\begin{enumerate}
+	\item Der Knoten ist ein Blatt (er besitzt weder ein linken noch rechtes Kind)
+	\item Der Knoten besitzt kein linkes Kind
+	\item Der Knoten besitzt kein rechtes Kind
+	\item Der Knoten besitzt zwei Kinder (links und rechts)
+\end{enumerate}
+
+Im ersten Fall entspricht die X-Koordinate dem Eintrag im Positions-Array in Abhängigkeit zu seiner Höhe.
+Im zweiten Fall wird der Knoten links, mit einem Offset von eins, von seinem rechten Kind positioniert.
+Im dritten Fall wird dieser rechts mit einem Offset von einsvon seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
+in der Mitte zwischen seinen Kinder positioniert. Hierbei kann die folgende Formel genutzt werden: $$x = (left.x + right.x) / 2.$$
+Hiernach wird der Modifikator bestimmt. Dafür wird der der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
+oder wie folgt berechnet: die nächste freie Position der Ebene subtrahiert mit der zuvor berechneten X-Koordinate.
+Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
+X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
+(Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
+
+In der zweiten Phase wird zu Beginn eine Variable namens ‘ModifikatorSumme’ deklariert und mit null initialisiert.
+Hiernach wird über die Baumstruktur in einer modifizierten Pre-Order nicht rekursiv traversiert. Die ModifikatorSumme entspricht
+der Summe aus allen Modifikatoren der Väter eines Knotens. Um diese Summe zu berechnen wird bei dem Besuch eines Kind-Knotens
+der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes zurück auf den Vater wird entsprechend
+der knotenspezifische Modifikator von der globalen ModifikatorSumme abgezogen. Bei der Traversierung wird zwischen
+drei Fällen unterschieden: erstmaliger Besuch, Besuch des linken Kindes und Besuch des rechten Kindes. Besitzt ein Knoten den Status
+‘erstmaliger Besuch’, so wurde dieser weder besucht noch abgearbeitet. Besitzt ein Knoten den Status ‘Besuch des linken Kindes / rechten Kindes’,
+so wurde der linke bzw. rechte Teilbaum fertig abgearbeitet.
+Wird ein Knoten erstmalig Besucht, so wird zu ModifikatorSumme der spezifische Knoten-Modifikator addiert. 
+
+Da die Pre-Order Traversierung vorgibt, erst den linken Teilbaum, dann den Knoten und zum Schluss den rechten Teilbaum zu besuchen,
+wird zunächst beginnend von der Wurzel aus, der am weitesten links unten stehende Knoten besucht. Abbildung XXX zeigt einen Baum,
+welcher mit dem verbesserten Algorithmus gezeichnet wurde. In diesem Beispiel würden wir bei der Wurzel starten und nach Knoten D laufen.
+Auf dem Weg dorthin werden die Modifikatoren von A und B auf die globale ModifikatorSumme addiert.
+Danach wird die x-Koordinate des Knotens entweder auf die nächste freie x-Koordinate auf der Höhe des Knotens gesetzt oder auf den
+Wert der vorläufigen x-Koordinate addiert mit der ModifikatorSumme. Dabei wird der kleinere der beiden Werte genutzt, um sicherzustellen,
+dass der Knoten möglichst weit links ist. Wenn der Knoten einen linken Sohn hat und die x-Koordinate des Sohnes größer ist als
+die x-Koordinate des Vaters, dann wird die x-Koordinate des Vaters auf die x-Koordinate des Sohnes plus eins gesetzt. 
+Damit wird sichergestellt, dass der Knoten nicht direkt über seinem linken Sohn steht, sondern eine Position weiter rechts.
+Falls der Knoten nicht die Wurzel ist, der Vater des Knotens bereits besucht und abgearbeitet wurde und die x-Koordinate des Knotens
+kleiner als die x-Koordinate des Vaters plus eins ist, dann wird die x-Koordinate des Knotens auf die x-Koordinate des Vaters plus eins gesetzt.
+Ähnlich wie im Fall vorher dient diese Überprüfung dazu, den Knoten richtig zu positionieren. Hier wird dadurch verhindert,
+dass der Knoten genau unter seinem Vater steht. Stattdessen wird sichergestellt, dass der Knoten rechts von seinem Vater steht,
+welcher der rechte Sohn sein muss, da der Vater bereits besucht und positioniert wurde. Nun ist die x-Koordinate des Knotens final
+bestimmt worden. Die y-Koordinate wird genau wie im naiven Algorithmus bestimmt, indem die Höhe des Knotens mit zwei multipliziert
+und mit einem Offset (hier eins) addiert wird. Zum Schluss wird die nächste freie x-Position auf der Höhe des Knotens bestimmt,
+indem die x-Koordinate mit einem Offset (hier zwei) addiert wird. 
+
+
+\subsection{Implementierung in Java}
 
 \subsection{Vor- und Nachteile}
 Durch das Erfüllen der Anforderung, dass jeder Vater über seinen Kindern zentriert werden soll, kann der verbesserte Algorithmus gegen
