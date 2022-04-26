@@ -20,8 +20,8 @@ stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderu
 Im Folgenden wird direkt die modifizierte Version des verbesserten Algorithmus betrachtet. Dafür wird die zweite While-Schleife des Programmcodes
 mit der Fig. 9 \cite[A modification of Algorithm 3]{q1} ersetzt.
 
-\label{chap:kapitel3_2_Ablauf}
 \subsection{Ablauf}
+\label{chap:kapitel3_2_Ablauf}
 
 Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase werden die vorläufigen X-Koordinaten der einzelnen Knoten bestimmt.
 In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
@@ -88,11 +88,11 @@ indem die x-Koordinate mit einem Offset (hier zwei) addiert wird.
 \end{figure}
 
 Dieser Algorithmus wurde wie der erste Algorithmus in Java implementiert. Da der gezeigte Algorithmus
-am Beispiel von Binärbäumen gezeigt wird, wurde eine Binäre-Knoten-Klasse implemeniert,
-die von der Knoten-Klasse, gezeigt in der Abbildung \ref{code:knotenclass}, erbt. In dieser Klasse wurden
+am Beispiel von Binärbäumen gezeigt wird, wurde eine Binäre-Knoten-Klasse implemeniert.
+Diese Klasse erbt von der, in der Abbildung \ref{code:knotenclass} gezeigten, Knoten-Klasse. In dieser Klasse wurden
 Hilfsmethoden und zwei weitere Attribute definiert. Die Implementierung sieht vereinfacht wie folgt aus:
 
-\begin{figure}
+\begin{figure}[H]
 \begin{lstlisting}
 public class BinaryKnoten extends Knoten {
     private int modifier;
@@ -116,13 +116,13 @@ public class BinaryKnoten extends Knoten {
 Als erstes wurde eine Prozedur mit dem Namen 
 'algorithmus2Verbessert' definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
 und die Höhe des Baums. Zu Anfang werden alle Arrays und Variablen, wie im Ablauf 
-bereits beschrieben initialisiert. Hiernach wird erstmalig in der Post-Order über 
+bereits beschrieben, initialisiert. Hiernach wird erstmalig in der Post-Order über 
 die Baum-Struktur rekursiv traversiert. Hierfür wird die in der Binären-Knoten-Klasse 
 zuvor erstellte Methode 'traversPostOrder' genutzt. Diese übernimmt als Argument einen Consumer, 
 in dem die einzelnen Knoten in der geforderten Reihenfolge übergeben werden. In dem übergeben Consumer 
 wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{lstlisting}
 wurzel.traversPostOrder(k -> {
     BinaryKnoten knoten = (BinaryKnoten) k;
@@ -136,7 +136,7 @@ wurzel.traversPostOrder(k -> {
 
 Die zweite Phase wurde so implementiert, dass iterativ über den Baum in der Pre-Order traversiert 
 wird. Hierfür eine Hilfsvariable namens 'current' deklariert, die immer den derzeitigen Knoten beinhaltet. 
-Die Implementierung entspricht dem zuvor gezeigten Ablauf in \ref{chap:kapitel3_2_Ablauf}. 
+Die Implementierung entspricht dem zuvor gezeigten \nameref{chap:kapitel3_2_Ablauf}. 
 
 Wird diese Implementierung auf einen beispielhaften Baum angewendet, so kann das Ergebniss
 in der Abbildung \ref{pic:baum_algo_2} betrachtet werden.
