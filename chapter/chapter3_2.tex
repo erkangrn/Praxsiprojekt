@@ -20,6 +20,7 @@ stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderu
 Im Folgenden wird direkt die modifizierte Version des verbesserten Algorithmus betrachtet. Dafür wird die zweite While-Schleife des Programmcodes
 mit der Fig. 9 \cite[A modification of Algorithm 3]{q1} ersetzt.
 
+\label{chap:kapitel3_2_Ablauf}
 \subsection{Ablauf}
 
 Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase werden die vorläufigen X-Koordinaten der einzelnen Knoten bestimmt.
@@ -49,7 +50,7 @@ Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie fol
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
 (Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
 
-In der zweiten Phase wird zu Beginn eine Variable namens ‘ModifikatorSumme’ deklariert und mit null initialisiert.
+In der zweiten Phase wird zu Beginn eine Variable namens 'ModifikatorSumme' deklariert und mit null initialisiert.
 Hiernach wird über die Baumstruktur in einer modifizierten Pre-Order nicht rekursiv traversiert. Die ModifikatorSumme entspricht
 der Summe aus allen Modifikatoren der Väter eines Knotens. Um diese Summe zu berechnen wird bei dem Besuch eines Kind-Knotens
 der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes zurück auf den Vater wird entsprechend
@@ -79,13 +80,67 @@ indem die x-Koordinate mit einem Offset (hier zwei) addiert wird.
 
 
 \subsection{Implementierung in Java}
-
 \begin{figure}[H]
     \centering
     \includegraphics[scale = 0.10]{abbildungen/baum_algo_2}
     \caption{Gezeichneter Baum durch den verbesserten Algorithmus}
     \label{pic:baum_algo_2} 
 \end{figure}
+
+Dieser Algorithmus wurde wie der erste Algorithmus in Java implementiert. Da der gezeigte Algorithmus
+am Beispiel von Binärbäumen gezeigt wird, wurde eine Binäre-Knoten-Klasse implemeniert,
+die von der Knoten-Klasse, gezeigt in der Abbildung \ref{code:knotenclass}, erbt. In dieser Klasse wurden
+Hilfsmethoden und zwei weitere Attribute definiert. Die Implementierung sieht vereinfacht wie folgt aus:
+
+\begin{figure}
+\begin{lstlisting}
+public class BinaryKnoten extends Knoten {
+    private int modifier;
+	private int vistStatus;
+
+    @Override
+	public void traversPostOrder(Consumer<Knoten> cons) { 
+        // ...
+    }
+
+    public BinaryKnoten getLeft() { /*...*/ }
+    public BinaryKnoten getRight() { /*...*/ }
+
+    // Getter / Setter ...
+}
+\end{lstlisting}
+    \caption{Vereinfachte Implementierung der BinaryKnoten-Klasse}
+    \label{code:binaryknotenclass}
+\end{figure}
+
+Als erstes wurde eine Prozedur mit dem Namen 
+'algorithmus2Verbessert' definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
+und die Höhe des Baums. Zu Anfang werden alle Arrays und Variablen, wie im Ablauf 
+bereits beschrieben initialisiert. Hiernach wird erstmalig in der Post-Order über 
+die Baum-Struktur rekursiv traversiert. Hierfür wird die in der Binären-Knoten-Klasse 
+zuvor erstellte Methode 'traversPostOrder' genutzt. Diese übernimmt als Argument einen Consumer, 
+in dem die einzelnen Knoten in der geforderten Reihenfolge übergeben werden. In dem übergeben Consumer 
+wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt.
+
+\begin{figure}
+\begin{lstlisting}
+wurzel.traversPostOrder(k -> {
+    BinaryKnoten knoten = (BinaryKnoten) k;
+
+    // Position / Modifikator des knoten bestimmen ...
+});
+\end{lstlisting}
+    \caption{Vereinfachte Implementierung der Phase 1}
+    \label{code:algo2_phase1}
+\end{figure}
+
+Die zweite Phase wurde so implementiert, dass iterativ über den Baum in der Pre-Order traversiert 
+wird. Hierfür eine Hilfsvariable namens 'current' deklariert, die immer den derzeitigen Knoten beinhaltet. 
+Die Implementierung entspricht dem zuvor gezeigten Ablauf in \ref{chap:kapitel3_2_Ablauf}. 
+
+Wird diese Implementierung auf einen beispielhaften Baum angewendet, so kann das Ergebniss
+in der Abbildung \ref{pic:baum_algo_2} betrachtet werden.
+
 
 \subsection{Vor- und Nachteile}
 Durch das Erfüllen der Anforderung, dass jeder Vater über seinen Kindern zentriert werden soll, kann der verbesserte Algorithmus gegen
