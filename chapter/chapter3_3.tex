@@ -5,6 +5,21 @@
 \subsection{Ablauf}
 
 \subsection{Implementierung in Java}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.05]{abbildungen/baum_algo_3_n1}
+    \caption{Gezeichneter komplexer Baum durch den Tillford Algorithmus}
+    \label{pic:baum_algo_3_n1} 
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale = 0.07]{abbildungen/baum_algo_3_n2}
+    \caption{Gezeichneter einafcher Baum durch den Tillford Algorithmus}
+    \label{pic:baum_algo_3_n2} 
+\end{figure}
+
 Um diesen Algorithmus implementieren zu können, muss die zuvor erstellte BinaryKnoten-Klasse um ein 
 Attribut erweitert werden: vom Typ Boolean mit dem Namen 'thread'. Zudem wurde eine weitere Klasse 
 namens 'Extreme' definiert, die wie zuvor beschrieben, implementiert wurde. Die Extreme-Klasse sieht wie folgt aus:
@@ -66,7 +81,8 @@ negativ sein können. Hierfür wird der kleinste X-Wert ermittelt, dessen absolu
 addiert mit eins in der Variable 'offset' gespeichert wird. Nun werden alle X-Koordinaten des 
 Baums mit dem Wert aus 'offset' addiert. 
 
-Zwei Beispielhafte Ergebnisse können in den Abbildungen [] und [] betrachtet werden.
+Zwei Beispielhafte Ergebnisse können in den Abbildungen \ref{pic:baum_algo_3_n1} 
+und \ref{pic:baum_algo_3_n2} betrachtet werden.
 
 
 \subsection{Vor- und Nachteile}
