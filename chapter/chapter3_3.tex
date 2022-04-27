@@ -32,6 +32,29 @@ sondern es werden zwei Subtrees unabhängig voneinander platziert und dann so na
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
 
+Hier ein Beisiel für LL, LR, RL, RR:
+
+\begin{figure}[ht]
+    \centering
+    \begin{minipage}[]{0.3\linewidth}
+        \centering
+        \includegraphics[scale=0.07]{abbildungen/tree_beispiel_LL_LR_RL_RR}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[]{0.65\linewidth}
+        \centering
+        \begin{tabular}{l | c | c | c | c | c | c | c | c}
+            & A & B & C & D & E & F & G & H \\
+            \hline\hline
+            \textbf{LL} & H & D & C & D & H & H & G & H \\
+            \textbf{LR} & G & D & C & D & F & H & G & H \\
+            \textbf{RL} & C & H & C & D & G & H & G & H \\
+            \textbf{RR} & C & G & C & D & G & H & G & H \\
+            \end{tabular}
+    \end{minipage} 
+    \caption{Beispielhafte Bestimmung für LL, LR, RL, RR}
+\end{figure}
+
 \subsection{Implementierung in Java}
 
 \begin{figure}[H]
