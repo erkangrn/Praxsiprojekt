@@ -9,7 +9,7 @@ Algorithmus produziert zwar maximal schmale Bäume, dafür können diese wesentl
 zeigt. Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Subtrees von Knoten außerhalb des Subtrees 
 beeinflusst werden. Daraus folgern die beiden, dass es mit dem Algorithmus von Wetherell und Shannon dazu kommen kann, dass ein Baum und 
 die Spiegelung desselben Baumes keine Spiegelbilder ergeben. Jedoch wäre es nach Reingold und Tilford wünschenswert, wenn symmetrische Bäume 
-auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet.\cite[]{q4}
+auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet.\cite[]{q2}
 
 \begin{quotation}
 	\textit{Aesthetic 4:} A tree and its mirror image should produce
@@ -19,11 +19,11 @@ auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algo
 \end{quotation}
 
 Wenn der Algorithmus eine Spiegelung eines Baumes erhält und der durch den Algorithmus gezeichnete Baum ein exaktes Spiegelbild des 
-eigentlichen Baumes ist, dann ist diese Anforderung erfüllt. Abbildung XXX zeigt einen Baum und seine Spiegelung der mit unserer Implementierung
-des Algorithmus von Wetherell und Shannon gezeichnet wurde. Abbildung XXX zeigt den selben Baum mit seiner Spiegelung, aber dieses mal mit
-unserer Java-Implementierung von Reingold und Tilfords Algorithmus. Zu erkennen an dieser Abbildung ist, dass der Algorithmus von Reingold und Shannon Aesthetic 4 erfüllt, 
-der Algorithmus von Wetherell und Shannon jedoch nicht. Außerdem sollen Subtrees immer gleich gezeichnet werden, unabhängig von ihrer
-Position im Baum.
+eigentlichen Baumes ist, dann ist diese Anforderung erfüllt. Abbildung \ref{pic:WS_Spiegel} zeigt einen Baum und seine Spiegelung der mit 
+unserer Implementierung des Algorithmus von Wetherell und Shannon gezeichnet wurde. Abbildung \ref{pic:TR_Spiegel} zeigt den selben Baum mit 
+seiner Spiegelung, aber dieses mal mit unserer Java-Implementierung von Reingold und Tilfords Algorithmus. Zu erkennen an dieser Abbildung ist, 
+dass der Algorithmus von Reingold und Shannon Aesthetic 4 erfüllt, der Algorithmus von Wetherell und Shannon jedoch nicht. Außerdem sollen 
+Subtrees immer gleich gezeichnet werden, unabhängig von ihrer Position im Baum.
 
 Um diese Anforderung zu erfüllen, dürfen Knoten außerhalb eines Subtrees die Knoten innerhalb eines Subtrees nicht beeinflussen. 
 Damit das erreicht wird, werden bei diesem Algorithmus nicht einzelne Knoten platziert (wie bei Wetherell und Shannon), 
@@ -71,8 +71,8 @@ private static class Extreme {
 \end{figure}
 
 Ferner wurden die zuvor beschriebenen Prozeduren 'setup' und 'petrify' implementiert. Die implementierte Prozedur
-'setup' unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und sie besitzt 
-nur ein Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der 'traversPostOrder'-Methode aus der 
+'setup' unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und besitzt 
+nur einen Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der 'traversPostOrder'-Methode aus der 
 BinaryKnoten-Klasse über den Baum traversiert.
 
 \begin{figure}[H]
@@ -92,7 +92,7 @@ public static void setup(BinaryKnoten wurzel) {
     }
 }
 \end{lstlisting}
-    \caption{Auschnitt aus der setup-Prozedur}
+    \caption{Ausschnitt aus der setup-Prozedur}
     \label{code:algo3_setup}
 \end{figure}
 
@@ -101,18 +101,24 @@ Ablauf aus dem Kapitel \ref{chap:kapitel3_1_Ablauf} berechnet. Dies bietet den V
 dass die Methodik zum Zeichnen der Bäume nicht verändert werden muss. Die weitere Implementierung folgt 
 der Beschreibung aus dem Ablauf.
 
-Die Implementierung der Prozedur 'petrify', entspricht der Beschreibung aus dem Ablauf.
+Die Implementierung der Prozedur 'petrify' entspricht der Beschreibung aus dem Ablauf.
 
 Hiernach wurde die Prozedur 'algorithmus3' definiert. Diese ruft zu Beginn die beiden Prozeduren, 
-'setup' und 'petrify' auf. Hiernach müssen die X-Koordinaten noch angepasst werden, da sich diese 
+'setup' und 'petrify' auf. Danach müssen die X-Koordinaten noch angepasst werden, da diese 
 negativ sein können. Hierfür wird der kleinste X-Wert ermittelt, dessen absoluter Wert 
 addiert mit eins in der Variable 'offset' gespeichert wird. Nun werden alle X-Koordinaten des 
 Baums mit dem Wert aus 'offset' addiert. 
 
-Zwei Beispielhafte Ergebnisse können in den Abbildungen \ref{pic:baum_algo_3_n1} 
-und \ref{pic:baum_algo_3_n2} betrachtet werden.
+Zwei beispielhafte Ergebnisse können in den Abbildungen \ref{pic:baum_algo_3_n1} 
+und \ref{pic:baum_algo_3_n2} betrachtet werden. 
 
 
 \subsection{Vor- und Nachteile}
+Ein Algorithmus, welcher Aesthetic 4 erfüllt, kann Bäume produzieren, welche nicht maximal schmal sind. 
+Für Reingold und Tilford ist das Erfüllen dieser Anforderung jedoch wichtiger als das Einhalten des physikalischen Limits, 
+da Aesthetic 4 dafür sorgt, dass diese Bäume für Menschen übersichtlicher und leichter zu verstehen sind. Dafür ist der Algorithmus 
+jedoch auch der am komplexesten zu verstehen und implementieren ist. Als Ausgleich produziert dieser Algorithmus aber auch das beste Ergebnis
+im Vergleich zu den beiden Algorithmen von Wetherell und Shannon. Selbst bei komplexeren Bäumen, wie in Abbildung \ref{pic:baum_algo_3_n2},
+wird ein übersichtlicher und ästhetisch ansprechender Baum gezeichnet. 
 
 \subsection{Modifizierung des Algorithmus}
