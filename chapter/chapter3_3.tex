@@ -32,7 +32,14 @@ sondern es werden zwei Subtrees unabhängig voneinander platziert und dann so na
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
 
-Hier ein Beisiel für LL, LR, RL, RR:
+Zum Verständnis des Algorithmus müssen einige Begriffe und Abkürzungen verbindlich erklärt werden, 
+da diese essentiell für diesen Algorithmus sind.
+\begin{itemize}
+    \item LL: Der am weitesten links stehende Knoten im linken Subtree eines Knotens
+    \item LR: Der am weitesten rechts stehende Knoten im linken Subtree eines Knotens
+    \item RL: Der am weitesten links stehende Knoten im rechten Subtree eines Knotens
+    \item RR: Der am weitesten rechts stehnde Knoten im rechten Subtree eines Knotens
+\end{itemize} 
 
 \begin{figure}[ht]
     \centering
@@ -54,6 +61,30 @@ Hier ein Beisiel für LL, LR, RL, RR:
     \end{minipage} 
     \caption{Beispielhafte Bestimmung für LL, LR, RL, RR}
 \end{figure}
+
+Der Algorithmus zum Zeichnen von Bäumen von Reingold und Tilford lässt sich in zwei Phasen unterteilen.
+Den ersten Teil stellt die Prozedur “Setup” dar. Diese Prozedur erhält vier Eingabeparameter, nämlich einen Knoten, 
+die Höhe des Knotens im Gesamtbaum, sowie RMOST und LMOST. RMOST und LMOST sind jedoch nicht vom Datentyp Node, sondern 
+von einem neuen Datentyp namens Extreme. Extreme sind Strukturen, die drei Attribute besitzen: 
+\begin{itemize}
+    \item Verweis auf einen Knoten
+    \item Offset \todo{näher beschreiben} 
+    \item Höhe des Knotens im Gesamtbaum
+\end{itemize}
+
+Zu Beginn der Prozedur wird geprüft, ob der übergebene Knoten NULL ist. Wenn dies nicht der Fall ist, 
+dann wird die Y-Koordinate des Knotens auf seine Höhe gesetzt. Danach wird die Prozedur rekursiv aufgerufen, 
+um eine Post-Order Traversierung auszuführen. Dieser Aufruf sieht wie folgt aus:
+
+\begin{lstlisting}
+    SETUP (L, LEVEL+1, LR, LL );
+    SETUP (R, LEVEL+1, RR, RL );
+\end{lstlisting}
+
+Durch die Post-Order Traversierung wird die Setup Prozedur solange aufgerufen, bis der aktuelle Knoten das Blatt unten links ist. 
+Da ein Blatt automatisch der am weitesten links und am weitesten rechts stehende Knoten ist, werden die Adressen von 
+RMOST und LMOST auf diesen Knoten gesetzt. Außerdem wird die Höhe von RMOST und LMOST auf die Höhe des aktuellen Knotens gesetzt. 
+Zudem werden die Offsets des Knotens und von RMOST sowie LMOST auf null gesetzt.
 
 \subsection{Implementierung in Java}
 
