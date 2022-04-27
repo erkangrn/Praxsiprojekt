@@ -1,5 +1,33 @@
 \label{chap:kapitel3_3}
 \section{Algorithmus von Reingold und Tilford}
+Das Paper “Tidier Drawings of Trees” von Edward M. Reingold und John S. Tilford aus dem Jahre 1981,
+welches im IEEE Transaction on Software Engineering erschienen ist, handelt von einem Algorithmus zum Zeichnen von Bäumen im Ebenen-Layout.
+Die Motivation der beiden Autoren für das Erstellen dieses Algorithmus beruht darauf, dass sie ein entscheidendes Problem an dem 
+verbesserten Algorithmus von Wetherell und Shannon erkannt haben. Dieser Algorithmus produziert, wie in Abschnitt XXX näher beschrieben, 
+Bäume, welche nicht maximal schmal sind, da das Zentrieren der Väter erzwungen wird. Die modifizierte Variante des Algorithmus produziert 
+zwar maximal schmale Bäume, dafür können diese wesentlich unübersichtlicher sein, was der untere Baum auf Abbildung XXX zeigt. 
+Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Subtrees von Knoten außerhalb des Subtrees 
+beeinflusst werden. Daraus folgern die beiden, dass es mit dem Algorithmus von Wetherell und Shannon dazu kommen kann, dass ein Baum und 
+die Spiegelung desselben Baumes keine Spiegelbilder ergeben. Jedoch wäre es nach Reingold und Tilford wünschenswert, wenn symmetrische Bäume 
+auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet.
+
+\begin{quotation}
+	\textit{Aesthetic 4:} A tree and its mirror image should produce
+    drawings that are reflections of one another; moreover, a subtree
+    should be drawn the same way regardless of where it
+    occurs in the tree.\cite[]{q4}
+\end{quotation}
+
+Wenn der Algorithmus eine Spiegelung eines Baumes erhält und der durch den Algorithmus gezeichnete Baum ein exaktes Spiegelbild des 
+eigentlichen Baumes ist, dann ist diese Anforderung erfüllt. Abbildung XXX zeigt zwei Bäume und ihre Spiegelung. Der eine Baum wurde mit 
+unserer Java-Implementierung des Algorithmus von Wetherell und Shannon gezeichnet, der andere mit unserer Java-Implementierung des Algorithmus 
+von Reingold und Tilford. Zu erkennen an dieser Abbildung ist, dass der Algorithmus von Reingold und Shannon Aesthetic 4 erfüllt, 
+der Algorithmus von Wetherell und Shannon jedoch nicht. Außerdem sollen Subtrees immer gleich gezeichnet werden, unabhängig von ihrer
+Position im Baum.
+
+Um diese Anforderung zu erfüllen, dürfen Knoten außerhalb eines Subtrees die Knoten innerhalb eines Subtrees nicht beeinflussen. 
+Damit das erreicht wird, werden bei diesem Algorithmus nicht einzelne Knoten platziert (wie bei Wetherell und Shannon), 
+sondern es werden zwei Subtrees unabhängig voneinander platziert und dann so nah wie möglich aneinander geschoben. 
 
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
