@@ -93,8 +93,7 @@ am Beispiel von Binärbäumen gezeigt wird, wurde eine Binäre-Knoten-Klasse imp
 die von der Knoten-Klasse, gezeigt in der Abbildung \ref{code:knotenclass}, erbt. In dieser Klasse wurden
 Hilfsmethoden und zwei weitere Attribute definiert. Die Implementierung sieht vereinfacht wie folgt aus:
 
-\begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[caption=Vereinfachte Implementierung der BinaryKnoten-Klasse, label=code:binaryknotenclass]
 public class BinaryKnoten extends Knoten {
     private int modifier;
 	private int vistStatus;
@@ -110,9 +109,6 @@ public class BinaryKnoten extends Knoten {
     // Getter / Setter ...
 }
 \end{lstlisting}
-    \caption{Vereinfachte Implementierung der BinaryKnoten-Klasse}
-    \label{code:binaryknotenclass}
-\end{figure}
 
 Als erstes wurde eine Prozedur mit dem Namen 
 'algorithmus2Verbessert' definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
@@ -123,17 +119,13 @@ zuvor erstellte Methode 'traversPostOrder' genutzt. Diese übernimmt als Argumen
 in dem die einzelnen Knoten in der geforderten Reihenfolge übergeben werden. In dem übergebenem Consumer 
 wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt.
 
-\begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[caption=Vereinfachte Implementierung der Phase 1, label=code:algo2_phase1]
 wurzel.traversPostOrder(k -> {
     BinaryKnoten knoten = (BinaryKnoten) k;
 
     // Position / Modifikator des Knoten bestimmen ...
 });
 \end{lstlisting}
-    \caption{Vereinfachte Implementierung der Phase 1}
-    \label{code:algo2_phase1}
-\end{figure}
 
 Die zweite Phase wurde so implementiert, dass iterativ über den Baum in der Pre-Order traversiert 
 wird. Hierfür wirdeine Hilfsvariable namens 'current' deklariert, die immer den derzeitigen Knoten beinhaltet. 

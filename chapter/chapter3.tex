@@ -52,8 +52,7 @@ ein einfaches traversieren über den Baum ermöglichen oder zum Setzen von Kinde
 
 Diese Klasse sieht wie folgt aus:
 
-\begin{figure}
-\begin{lstlisting}
+\begin{lstlisting}[caption=Vereinfachte Implementierung der Knotenklasse, label=code:knotenclass]
 class Knoten {
 	private Knoten father;
 	private Knoten[] childs;
@@ -68,16 +67,13 @@ class Knoten {
 	// Getter, Setter, weitere Hilfsmethoden...
 }
 \end{lstlisting}
-\caption{Implementierung der Knotenklasse}
-\label{code:knotenclass}
-\end{figure}
 
 Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implemeniert werden.
 Hierzu wurde eine Prozedur namens 'algorithmus1' erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird wie zuvor beschrieben durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Implementierung des naiven Algorithmuses]
 public static void algorithmus1(Knoten wurzel, int maximaleHoehe) 
 {
 	int[] nextX = new int[maximaleHoehe];

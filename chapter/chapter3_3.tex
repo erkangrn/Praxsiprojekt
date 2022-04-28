@@ -106,8 +106,7 @@ Um diesen Algorithmus implementieren zu können, muss die zuvor erstellte Binary
 Attribut erweitert werden: vom Typ Boolean mit dem Namen 'thread'. Zudem wurde eine weitere Klasse 
 namens 'Extreme' definiert, die wie zuvor beschrieben, implementiert wurde. Die Extreme-Klasse sieht wie folgt aus:
 
-\begin{figure}[H]
-\begin{lstlisting}
+\begin{lstlisting}[caption=Implementierung der Extreme-Klasse, label=code:algo3_extreme]
 private static class Extreme {
     BinaryKnoten knoten;
     int offset;
@@ -120,17 +119,13 @@ private static class Extreme {
     }
 }
 \end{lstlisting}
-    \caption{Implementierung der Extreme-Klasse}
-    \label{code:algo3_extreme}
-\end{figure}
 
 Ferner wurden die zuvor beschriebenen Prozeduren 'setup' und 'petrify' implementiert. Die implementierte Prozedur
 'setup' unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und besitzt 
 nur einen Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der 'traversPostOrder'-Methode aus der 
 BinaryKnoten-Klasse über den Baum traversiert.
 
-\begin{figure}[H]
-\begin{lstlisting}
+\begin{lstlisting}[caption=Ausschnitt aus der setup-Prozedur, label=code:algo3_setup]
 public static void setup(BinaryKnoten wurzel) {
     // Initialisierungen von Variablen
     // <...>
@@ -146,9 +141,6 @@ public static void setup(BinaryKnoten wurzel) {
     }
 }
 \end{lstlisting}
-    \caption{Ausschnitt aus der setup-Prozedur}
-    \label{code:algo3_setup}
-\end{figure}
 
 Abweichend zum Ablauf entspricht die Y-Koordinate nicht der Höhe des Knotens. Stattdessen wird diese wie im 
 Ablauf aus dem Kapitel \ref{chap:kapitel3_1_Ablauf} berechnet. Dies bietet den Vorteil, 
