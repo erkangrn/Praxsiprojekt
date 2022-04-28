@@ -35,9 +35,9 @@ Höhe im Baum speichern können.
 
 Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und die Höhe des Baumes.
 Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert:
-Ein Array (später Positions-Array genannt), welches die jeweils nächst freie X-Position einer Ebene des Baums beinhaltet.
+Ein Array (später Positions-Array genannt), welches die jeweils nächste freie X-Position einer Ebene des Baums beinhaltet.
 Hiernach wird über die Baumstruktur der Wurzel, in der Pre-Order-Traversierung, traversiert.
-Nun werden die X und Y Attribute der Knoten wie folgt bestimmt und gesetzt:
+Nun werden die X- und Y-Attribute der Knoten wie folgt bestimmt und gesetzt:
 
 Der derzeitige Knoten bekommt als X-Position den Wert aus dem Positions-Array, in Abhängigkeit von seiner Höhe im Baum.
 Danach wird die Zahl im Positions-Array inkrementiert. Die Y-Position des Knoten wird nun in Abhängigkeit zur Höhe des Knoten
@@ -45,7 +45,7 @@ mit der folgenden Formel berechnet: $$y := 2 * HoeheDesKnotens + 1$$
 
 Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
 
-Nach dem Durchlaufen aller Knoten des Baumes sind alle X und Y-Koordinate gesetzt und der Baum kann gezeichnet werden.
+Nach dem Durchlaufen aller Knoten des Baumes sind alle X- und Y-Koordinaten gesetzt und der Baum kann gezeichnet werden.
 
 \subsection{Implementierung in Java}
 \erstelltvon{Treulieb}
@@ -71,9 +71,9 @@ class Knoten {
 }
 \end{lstlisting}
 
-Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implemeniert werden.
+Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implementiert werden.
 Hierzu wurde eine Prozedur namens 'algorithmus1' erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
-und die Höhe des Baums. Die weitere Implementierung wird wie zuvor beschrieben durchgeführt. Eine mögliche Implementierung
+und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 
 \begin{lstlisting}[caption=Implementierung des naiven Algorithmus]
@@ -110,5 +110,5 @@ Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal 
 Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Bei der Beziehung zwischen H als Vater und I und J als Sohn wird 
 deutlich, dass der von diesem Algorithmus gezeichnete Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten 
 aus, welche die Knoten beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. 
-Deshalb definieren Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäume erfüllen müssen.
+Deshalb definieren Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäumen erfüllen müssen.
 
