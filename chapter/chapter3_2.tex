@@ -2,13 +2,13 @@
 \section{Verbesserter Algorithmus von Wetherell und Shannon}
 \label{chap:kapitel3_2}
 \erstelltvon{Treulieb}
-Wetherell und Shannon stellen in ihrem Paper einen weiteren, verbesserten Algorithmus zum Zeichnen von Bäumen vor, welcher jedoch
+Wetherell und Shannon stellen in Ihrem Paper einen weiteren, verbesserten Algorithmus zum Zeichnen von Bäumen vor, welcher jedoch
 ausschließlich Binärbäume zeichnen kann. Dieser Algorithmus weist die Nachteile des naiven Algorithmus nicht mehr auf.
 Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen soll. Jene Anforderungen sind speziell für Binärbäume.   
 
 \begin{quotation}
 	\textit{Aesthetic 2:} In a binary tree, each left son should be positioned
-	left of its father and each right son right of its father.\cite[]{q1}
+	left of its father and each right son right of its father\cite[]{q1}.
 \end{quotation}
 
 In einem Binärbaum hat jeder Knoten maximal ein linkes und maximal ein rechtes Kind. Daher ist es auch logisch, dass jedes linke Kind 
@@ -16,7 +16,7 @@ links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden soll.
 stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderung fest.
 
 \begin{quotation}
-	\textit{Aesthetic 3:} A parent should be centered over its children.\cite[]{q1}
+	\textit{Aesthetic 3:} A parent should be centered over its children\cite[]{q1}.
 \end{quotation}
 
 Im Folgenden wird direkt die modifizierte Version des verbesserten Algorithmus betrachtet. Dafür wird die zweite While-Schleife des Programmcodes
@@ -26,13 +26,13 @@ mit der Fig. 9 \cite[A modification of Algorithm 3]{q1} ersetzt.
 \subsection{Ablauf}
 \erstelltvon{Garan}
 
-Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase werden die vorläufigen X-Koordinaten der einzelnen Knoten bestimmt.
+Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase wird die vorläufige X-Koordinate der einzelnen Knoten bestimmt.
 In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
 
 Dieser Algorithmus besitzt zwei Eingabeparameter, nämlich die Wurzel des Baumes und die Höhe des Baumes. Zu Beginn werden zwei
-ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge ‘Höhe des Baumes’.
+ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge "Höhe des Baumes".
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
-Zudem wird eine Variable namens ‘ModifikatorSumme’ deklariert und mit null initialisiert.
+Zudem wird eine Variable namens "ModifikatorSumme" deklariert und mit null initialisiert.
 
 Nun wird über die Baumstruktur in der Post-Order traversiert. Dabei werden die vorläufigen X-Koordinaten der Knoten wie folgt bestimmt:
 Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
