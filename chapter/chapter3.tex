@@ -2,6 +2,7 @@
 \label{chap:kapitel3}
 
 \section{Naiver Algorithmus von Wetherell und Shannon}
+\erstelltvon{Garan}
 
 Das Paper “Tidy Drawings of Trees” von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
 welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen.
@@ -26,6 +27,7 @@ nicht eingeschränkt. Stattdessen bestimmt der Baum selbst seine Höhe. \cite[]{
 
 \label{chap:kapitel3_1_Ablauf}
 \subsection{Ablauf}
+\erstelltvon{Treulieb}
 Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur 
 wie folgt definiert sein: Sie benötigt eine Struktur die symbolisch für ein Knoten des Baums steht. 
 Diese Knoten-Struktur muss hierbei ihren Vater kennen, auf ihre Kinder zugreifen können sowie ihre Position und
@@ -46,6 +48,7 @@ Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt.
 Nach dem Durchlaufen aller Knoten des Baumes sind alle X und Y-Koordinate gesetzt und der Baum kann gezeichnet werden.
 
 \subsection{Implementierung in Java}
+\erstelltvon{Treulieb}
 Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur
 implementiert. Zusätzlich wurden Methoden hinzugefügt, die beispielsweise
 ein einfaches Traversieren über den Baum ermöglichen oder zum Setzen von Kindern.
@@ -100,6 +103,7 @@ Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_al
 \end{figure}
 
 \subsection{Vor- und Nachteile}
+\erstelltvon{Garan}
 Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-Implementierung des naiven Algorithmus von Wetherell und Shannon
 gezeichnet wurde.
 Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
