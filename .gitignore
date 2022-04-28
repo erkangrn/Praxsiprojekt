@@ -258,4 +258,7 @@ TSWLatexianTemp*
 # standalone packages
 *.sta
 
+# sub-git-folder
+abbildungen/git/
+
 thesis.pdf
