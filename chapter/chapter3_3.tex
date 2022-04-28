@@ -32,14 +32,14 @@ sondern es werden zwei Subtrees unabhängig voneinander platziert und dann so na
 
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
-
+\erstelltvon{Garan/Treulieb}
 Zum Verständnis des Algorithmus müssen einige Begriffe und Abkürzungen verbindlich erklärt werden, 
 da diese essentiell für diesen Algorithmus sind.
 \begin{itemize}
     \item LL: Der am weitesten links stehende Knoten im linken Subtree eines Knotens
     \item LR: Der am weitesten rechts stehende Knoten im linken Subtree eines Knotens
     \item RL: Der am weitesten links stehende Knoten im rechten Subtree eines Knotens
-    \item RR: Der am weitesten rechts stehnde Knoten im rechten Subtree eines Knotens
+    \item RR: Der am weitesten rechts stehende Knoten im rechten Subtree eines Knotens
 \end{itemize} 
 
 \begin{figure}[ht]
@@ -69,7 +69,7 @@ die Höhe des Knotens im Gesamtbaum, sowie RMOST und LMOST. RMOST und LMOST sind
 von einem neuen Datentyp namens Extreme. Extreme sind Strukturen, die drei Attribute besitzen: 
 \begin{itemize}
     \item Verweis auf einen Knoten
-    \item Offset \todo{näher beschreiben} 
+    \item Offset zur X-Koordinate zur Wurzel des Subtrees
     \item Höhe des Knotens im Gesamtbaum
 \end{itemize}
 
@@ -77,7 +77,7 @@ Zu Beginn der Prozedur wird geprüft, ob der übergebene Knoten NULL ist. Wenn d
 dann wird die Y-Koordinate des Knotens auf seine Höhe gesetzt. Danach wird die Prozedur rekursiv aufgerufen, 
 um eine Post-Order Traversierung auszuführen. Dieser Aufruf sieht wie folgt aus:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption = Rekursiver Aufruf von Setup]
     SETUP (L, LEVEL+1, LR, LL );
     SETUP (R, LEVEL+1, RR, RL );
 \end{lstlisting}
@@ -86,6 +86,53 @@ Durch die Post-Order Traversierung wird die Setup Prozedur solange aufgerufen, b
 Da ein Blatt automatisch der am weitesten links und am weitesten rechts stehende Knoten ist, werden die Adressen von 
 RMOST und LMOST auf diesen Knoten gesetzt. Außerdem wird die Höhe von RMOST und LMOST auf die Höhe des aktuellen Knotens gesetzt. 
 Zudem werden die Offsets des Knotens und von RMOST sowie LMOST auf null gesetzt. 
+
+Wenn der Knoten sowohl ein linkes als auch ein rechtes Kind hat, dann wird geprüft, ob das linke Kind ein rechtes Kind hat. 
+Ist dies der Fall, dann wird der Offset des linken Kindes auf die Summe der linken Offsets addiert und vom aktuellen Abstand abgezogen. 
+Zudem wird dann der Zeiger auf das linke Kind auf das rechte Kind des linken Kindes gesetzt. Andernfalls, wird dann der Offset des linken 
+Kindes von der Summe der linken Offsets subtrahiert und der aktuelle Abstand um den Offset des linken Kindes erhöht. Auch wird danach der 
+Zeiger auf das linke Kind auf das linke Kind des linken Kindes gesetzt. Genau dasselbe wird auch für das rechte Kind geprüft und ausgeführt. 
+Falls danach der aktuelle Abstand kleiner als ein vorher festgelegter Mindestabstand ist, wird der Abstand zwischen den Söhnen um den 
+Mindestabstand minus dem aktuellen Abstand erhöht. Außerdem wird der aktuelle Abstand dann auf den Mindestabstand gesetzt. Dies wird solange 
+ausgeführt, bis einer der beiden Zeiger (auf linkes/rechtes Kind) gleich NULL sind. Diese Schleife sorgt dafür, dass entlang der rechten 
+Kontur des linken Subtrees und entlang der linken Kontur des rechten Subtrees die Distanz zwischen den beiden bestimmt wird. 
+Gegebenenfalls werden dann die beiden Subtrees auseinander geschoben, falls sie sich berühren. \cite{q2}
+
+Nach dieser Schleife wird der Offset des aktuellen Knotens auf die Hälfte des Abstandes zwischen den Söhnen plus eins gesetzt. 
+Dieser Offset wird dann von der Summe der linken Offsets abgezogen und auf die Summe der rechten Offsets addiert. 
+
+Danach werden RMOST und LMOST mit Hilfe von LL, LR, RL und RR neu festgelegt. Wenn die Höhe von RL größer als die Höhe von LL ist oder 
+der aktuelle Knoten kein linkes Kind hat, dann setze LMOST auf RL und erhöhe den Offset von LMOST um den Offset des Knotens. 
+Ansonsten setze LMOST auf LL und ziehe vom Offset von LMOST den Offset des Knotens ab. Diese Abfrage wird für RMOST und LR sowie RR 
+wiederholt. Es wird geprüft, ob die Höhe von LR größer ist als die Höhe von RR oder der Knoten kein rechtes Kind hat. Wenn dies der Fall ist, 
+dann wird RMOST auf LR gesetzt und der Offset von RMOST um den Offset des Knotens verringert. Tritt dieser Fall nicht ein, dann wird RMOST 
+auf RR gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert. 
+
+RMOST und LMOST korrekt festzulegen ist für den nächsten Schritt wichtig und notwendig. Diese beiden Knoten in einem Subtree 
+sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Dieser Schritt ist nur dann nötig, wenn 
+die beiden betrachteten Subtrees eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
+geben dafür ein Beispiel an. Wenn der linke Subtree höher als der rechte Subtree ist, dann muss ein Thread von RR zu dem am weitesten 
+rechts stehenden Knoten des linken Subtrees auf der nächsten Höhe gelegt werden. Dieser Thread würde in dem Zeiger auf das linke Kind 
+von RR gespeichert werden. Benötigt werden diese Threads als eine Art “Pseudo-Kante” um sicherzustellen, dass diese Teilbäume sich 
+nicht berühren und auseinander geschoben werden.
+
+Die zweite Phase des Algorithmus stellt die Prozedur “petrify” dar. Ziel dieser Prozedur ist es die relativen Offsets, 
+welche in der vorherigen Phase gesetzt worden, in absolute Koordinaten umzuwandeln. Zudem sorgt die Prozedur dafür, dass die Threads 
+gelöscht werden, damit keine falschen Kanten später beim Zeichnen entstehen. Um dies zu erreichen wird eine Pre-Order Traversierung 
+über dem Baum durchgeführt. Dafür bekommt “petrify” zwei Eingabeparameter, nämlich einen Knoten (zu Beginn die Wurzel) und eine 
+initiale X-Position (ist beliebig). Dann prüft die Prozedur, ob der Knoten ungleich NULL ist. Wenn dies der Fall ist, dann wird geschaut, 
+ob der Knoten einen Thread hat. Da Threads Blätter sein müssen, werden die Verweise des Knotens auf sein linkes und rechtes Kind gelöscht, 
+um keinen Thread fälschlicherweise als Kante darzustellen. Dann setzt die Prozedur die finale X-Koordinate des Knotens auf den 
+übergebenen Parameter. Zum Schluss wird “petrify” wie folgt rekursiv aufgerufen:
+
+\begin{lstlisting}[caption=Rekursiver Aufruf von Petrify (Pre-Order)]
+    PETRIFY(T.LLINK, XPOS - T.OFFSET);
+    PETRIFY(T.RLINK, XPOS + T.OFFSET);
+\end{lstlisting}
+
+Bei linken Kindern wird der Offset des Vaters von der X-Koordinate abgezogen. Bei rechten Kindern wird dann die X-Koordinate mit dem 
+Offset des Vaters addiert. Ziel dessen ist, dass linke Kind links vom Vater und rechte Kinder rechts vom Vater stehen.
+
 
 \subsection{Implementierung in Java}
 \erstelltvon{Treulieb}

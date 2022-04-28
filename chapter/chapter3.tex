@@ -76,7 +76,7 @@ Hierzu wurde eine Prozedur namens 'algorithmus1' erstellt, die zwei Parameter be
 und die Höhe des Baums. Die weitere Implementierung wird wie zuvor beschrieben durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 
-\begin{lstlisting}[caption=Implementierung des naiven Algorithmuses]
+\begin{lstlisting}[caption=Implementierung des naiven Algorithmus]
 public static void algorithmus1(Knoten wurzel, int maximaleHoehe) 
 {
 	int[] nextX = new int[maximaleHoehe];
@@ -92,7 +92,7 @@ public static void algorithmus1(Knoten wurzel, int maximaleHoehe)
 }
 \end{lstlisting}
 
-Wird diese Prozedur mit einer Baumstruktur aufgerufen, so werden alle X und Y-Koordinaten gesetzt.
+Wird diese Prozedur mit einer Baumstruktur aufgerufen, so werden alle X- und Y-Koordinaten gesetzt.
 Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_algo_1} betrachet werden.
 
 \begin{figure}[H]
@@ -107,8 +107,8 @@ Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_al
 Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-Implementierung des naiven Algorithmus von Wetherell und Shannon
 gezeichnet wurde.
 Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
-Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Sieht man sich die Beziehung zwischen dem Vater H und seinen Kindern
-I und J an, erkennt man, dass dieser Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten aus, welche die Knoten
-beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. Deshalb definieren
-Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäume erfüllen müssen.
+Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Bei der Beziehung zwischen H als Vater und I und J als Sohn wird 
+deutlich, dass der von diesem Algorithmus gezeichnete Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten 
+aus, welche die Knoten beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. 
+Deshalb definieren Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäume erfüllen müssen.
 
