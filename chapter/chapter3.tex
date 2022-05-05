@@ -5,7 +5,7 @@
 \erstelltvon{Garan}
 
 Das Paper “Tidy Drawings of Trees” von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
-welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen.
+welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen\cite[]{q1}.
 Der erste Algorithmus, der von den beiden Autoren beschrieben und vorgestellt wird, ist ein naiver Algorithmus 
 zum Zeichnen von Bäumen. Dieser Algorithmus soll dabei zwei Anforderungen erfüllen. Die erste Anforderung wird dabei
 an die Ästhetik des gezeichneten Baumes gestellt. 
@@ -16,7 +16,7 @@ an die Ästhetik des gezeichneten Baumes gestellt.
 \end{quotation}
 Alle Knoten, die dieselbe Höhe haben, sollen sich auf einer horizontalen
 Linie befinden. Jede Höhe hat dabei eine Linie, auf welcher sich die Knoten befinden sollen und diese Linien sollen alle
-parallel zueinander sein. Außerdem soll der Algorithmus beim Zeichnen eines Baumes ein physikalisches Limit einhalten.
+parallel zueinander sein. Außerdem soll der Algorithmus beim Zeichnen eines Baumes ein physikalisches Limit einhalten:
 \begin{quotation}
 	\textit{Physical limit:} Tree drawings should occupy as little width
 	as possible (the height of a tree drawing is fixed by the tree
@@ -72,7 +72,7 @@ class Knoten {
 \end{lstlisting}
 
 Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implementiert werden.
-Hierzu wurde eine Prozedur namens "algorithmus1" erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
+Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 

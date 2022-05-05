@@ -2,13 +2,13 @@
 \section{Algorithmus von Reingold und Tilford}
 \erstelltvon{Garan}
 Das Paper “Tidier Drawings of Trees” von Edward M. Reingold und John S. Tilford aus dem Jahre 1981,
-welches im IEEE Transaction on Software Engineering erschienen ist, handelt von einem Algorithmus zum Zeichnen von Bäumen im Ebenen-Layout.
+welches im IEEE Transaction on Software Engineering erschienen ist, handelt von einem Algorithmus zum Zeichnen von Bäumen im Ebenen-Layout\cite[]{q2}.
 Die Motivation der beiden Autoren für das Erstellen dieses Algorithmus beruht darauf, dass sie ein entscheidendes Problem an dem 
 verbesserten Algorithmus von Wetherell und Shannon erkannt haben. Dieser Algorithmus ohne die Modifikation produziert Bäume, 
 welche nicht maximal schmal sind, da das Zentrieren der Väter erzwungen wird. Die modifizierte Variante des 
 Algorithmus produziert zwar maximal schmale Bäume, dafür können diese wesentlich unübersichtlicher sein, 
 was der untere Baum auf Abbildung \ref{pic:baum_theorem_uglification} zeigt. 
-Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Subtrees von Knoten außerhalb des Subtrees 
+Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Teilbäume von Knoten außerhalb des Teilbäume 
 beeinflusst werden. Daraus folgern die beiden, dass es mit dem Algorithmus von Wetherell und Shannon dazu kommen kann, dass ein Baum und 
 die Spiegelung desselben Baumes keine Spiegelbilder ergeben. Jedoch wäre es nach Reingold und Tilford wünschenswert, wenn symmetrische Bäume 
 auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet \cite[]{q2}.
@@ -25,11 +25,11 @@ eigentlichen Baumes ist, dann ist diese Anforderung erfüllt. Abbildung \ref{pic
 unserer Implementierung des Algorithmus von Wetherell und Shannon gezeichnet wurde. Abbildung \ref{pic:TR_Spiegel} zeigt den selben Baum mit 
 seiner Spiegelung, aber dieses mal mit unserer Java-Implementierung von Reingold und Tilfords Algorithmus. Zu erkennen an dieser Abbildung ist, 
 dass der Algorithmus von Reingold und Tilford Aesthetic 4 erfüllt, der Algorithmus von Wetherell und Shannon jedoch nicht. Außerdem sollen 
-Subtrees immer gleich gezeichnet werden, unabhängig von ihrer Position im Baum.
+Teilbäume immer gleich gezeichnet werden, unabhängig von ihrer Position im Baum.
 
-Um diese Anforderung zu erfüllen, dürfen Knoten außerhalb eines Subtrees die Knoten innerhalb eines Subtrees nicht beeinflussen. 
+Um diese Anforderung zu erfüllen, dürfen Knoten außerhalb eines Teilbaums die Knoten innerhalb eines Teilbaums nicht beeinflussen. 
 Damit das erreicht wird, werden bei diesem Algorithmus nicht einzelne Knoten platziert (wie bei Wetherell und Shannon), 
-sondern es werden zwei Subtrees unabhängig voneinander platziert und dann so nah wie möglich aneinander geschoben \cite[]{q2}. 
+sondern es werden zwei Teilbäume unabhängig voneinander platziert und dann so nah wie möglich aneinander geschoben \cite[]{q2}. 
 
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
@@ -70,7 +70,7 @@ die Höhe des Knotens im Gesamtbaum, sowie RMOST und LMOST. RMOST und LMOST sind
 von einem neuen Datentyp namens Extreme. Extreme sind Strukturen, die drei Attribute besitzen: 
 \begin{itemize}
     \item Verweis auf einen Knoten
-    \item Offset zur X-Koordinate zur Wurzel des Subtrees
+    \item Offset zur X-Koordinate zur Wurzel des Teilbaums
     \item Höhe des Knotens im Gesamtbaum
 \end{itemize}
 
@@ -96,8 +96,8 @@ Zeiger auf das linke Kind auf das linke Kind des linken Kindes gesetzt. Genau da
 Falls danach der aktuelle Abstand kleiner als ein vorher festgelegter Mindestabstand ist, wird der Abstand zwischen den Söhnen um den 
 Mindestabstand minus dem aktuellen Abstand erhöht. Außerdem wird der aktuelle Abstand dann auf den Mindestabstand gesetzt. Dies wird solange 
 ausgeführt, bis einer der beiden Zeiger (auf linkes/rechtes Kind) gleich \ac{NULL} ist. Diese Schleife sorgt dafür, dass entlang der rechten 
-Kontur des linken Subtrees und entlang der linken Kontur des rechten Subtrees die Distanz zwischen den beiden bestimmt wird. 
-Gegebenenfalls werden dann die beiden Subtrees auseinander geschoben, falls sie sich berühren \cite{q2}.
+Kontur des linken Teilbaums und entlang der linken Kontur des rechten Teilbaums die Distanz zwischen den beiden bestimmt wird. 
+Gegebenenfalls werden dann die beiden Teilbäume auseinander geschoben, falls sie sich berühren \cite{q2}.
 
 Nach dieser Schleife wird der Offset des aktuellen Knotens auf die Hälfte des Abstandes zwischen den Söhnen plus eins gesetzt. 
 Dieser Offset wird dann von der Summe der linken Offsets abgezogen und auf die Summe der rechten Offsets addiert. 
@@ -111,9 +111,9 @@ auf RR gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert.
 
 RMOST und LMOST korrekt festzulegen ist für den nächsten Schritt wichtig und notwendig. Diese beiden Knoten in einem Subtree 
 sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Dieser Schritt ist nur dann nötig, wenn 
-die beiden betrachteten Subtrees eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
+die beiden betrachteten Teilbäume eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
 geben dafür ein Beispiel an. Wenn der linke Subtree höher als der rechte Subtree ist, dann muss ein Thread von RR zu dem am weitesten 
-rechts stehenden Knoten des linken Subtrees auf der nächsten Höhe gelegt werden. Dieser Thread würde in dem Zeiger auf das linke Kind 
+rechts stehenden Knoten des linken Teilbaums auf der nächsten Höhe gelegt werden. Dieser Thread würde in dem Zeiger auf das linke Kind 
 von RR gespeichert werden. Benötigt werden diese Threads als eine Art “Pseudo-Kante” um sicherzustellen, dass diese Teilbäume sich 
 nicht berühren und auseinander geschoben werden.
 

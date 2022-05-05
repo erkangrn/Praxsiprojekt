@@ -3,16 +3,17 @@
 \label{chap:kapitel3_2}
 \erstelltvon{Treulieb}
 Wetherell und Shannon stellen in Ihrem Paper einen weiteren, verbesserten Algorithmus zum Zeichnen von Bäumen vor, welcher jedoch
-ausschließlich Binärbäume zeichnen kann. Dieser Algorithmus weist die Nachteile des naiven Algorithmus nicht mehr auf.
-Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen soll. Jene Anforderungen sind speziell für Binärbäume.   
+ausschließlich Binärbäume zeichnen kann\cite[]{q1}. Dieser Algorithmus weist die Nachteile des naiven Algorithmus nicht mehr auf.
+Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen soll. Jene Anforderungen sind speziell für
+die von ihm produzierten Darstellungen von Binärbäume.   
 
 \begin{quotation}
 	\textit{Aesthetic 2:} In a binary tree, each left son should be positioned
 	left of its father and each right son right of its father\cite[]{q1}.
 \end{quotation}
 
-In einem Binärbaum hat jeder Knoten maximal ein linkes und maximal ein rechtes Kind. Daher ist es auch logisch, dass jedes linke Kind 
-links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden soll. Zudem soll jeder Vater zentriert über seinen Kindern
+In einem Binärbaum hat jeder Knoten maximal ein linkes und maximal ein rechtes Kind. Daher soll jedes linke Kind 
+links vom Vater und jedes rechte Kind rechts vom Vater positioniert werden. Zudem soll jeder Vater zentriert über seinen Kindern
 stehen. Dieses Verhalten legen Wetherell und Shannon in einer weiteren Anforderung fest.
 
 \begin{quotation}
@@ -34,21 +35,21 @@ ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Di
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
 Zudem wird eine Variable namens "ModifikatorSumme" deklariert und mit null initialisiert.
 
-Nun wird über die Baumstruktur in der Post-Order traversiert. Dabei werden die vorläufigen X-Koordinaten der Knoten wie folgt bestimmt:
+Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten wie folgt bestimmt:
 Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
 \begin{enumerate}
-	\item Der Knoten ist ein Blatt (er besitzt weder ein linken noch rechtes Kind)
+	\item Der Knoten ist ein Blatt
 	\item Der Knoten besitzt kein linkes Kind
 	\item Der Knoten besitzt kein rechtes Kind
 	\item Der Knoten besitzt zwei Kinder (links und rechts)
 \end{enumerate}
 
 Im ersten Fall entspricht die X-Koordinate dem Eintrag im Positions-Array in Abhängigkeit zu seiner Höhe.
-Im zweiten Fall wird der Knoten links, mit einem Offset von eins, von seinem rechten Kind positioniert.
-Im dritten Fall wird dieser rechts, mit einem Offset von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
+Im zweiten Fall wird der Knoten links, mit einem Versatz von eins, von seinem rechten Kind positioniert.
+Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
 in der Mitte zwischen seinen Kinder positioniert. Hierbei kann die folgende Formel genutzt werden: $$x = (left.x + right.x) / 2.$$
 Hiernach wird der Modifikator bestimmt. Dafür wird der der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
-oder wie folgt berechnet: die nächste freie Position der Ebene subtrahiert mit der zuvor berechneten X-Koordinate.
+oder wie folgt berechnet: Die nächste freie Position der Ebene subtrahiert von der zuvor berechneten X-Koordinate.
 Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
 (Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
@@ -152,7 +153,7 @@ Abbildung \ref{pic:baum_theorem_uglification} zeigt jenes Verhalten. Daraus schl
 
 Bei der schmaleren Variante des Baumes auf Abbildung \ref{pic:baum_theorem_uglification} ist der Vater von Knoten A nicht zentriert
 über beiden Kindern und verstößt somit gegen Aesthetic 3. Die weitere Variante verstößt gegen das physikalische Limit, da der Baum nicht
-maximal schmal ist. Dies stellt hier einen Trade-off zwischen den beiden Anforderungen dar. Es ist somit möglich, dass maximal schmale Bäume der
+maximal schmal ist. Dies stellt hier einen Trade-off zwischen den beiden Anforderungen dar. Es ist somit notwendig, dass maximal schmale Bäume der
 Anforderungen Aesthetic 3 widersprechen können. 
 
 Im Vergleich zu dem naiven Algorithmus von Wetherell und Shannon zeichnet der verbesserte Algorithmus die Bäume nicht mehr maximal links.
@@ -160,5 +161,5 @@ Dies sorgt dafür, dass die gezeichneten Bäume übersichtlicher wirken und äst
 ist die Positionierung der Knoten auch von Relevanz, da das linke Kind kleiner und das rechte Kind größer als der Knoten ist. Beispielsweise
 Suchbäume sind dadurch auch intuitiver zu verstehen, da die Größe des Inhalts von links nach rechts aufsteigend sortiert ist. 
 
-Zudem ist der verbesserte Algorithmus nicht in der Lage beliebige Bäume zu zeichnen, sondern ausschließlich Binärbäume. Jedoch kann er durch
+Zudem ist der verbesserte Algorithmus typischerweise nicht in der Lage beliebige Bäume zu zeichnen, sondern ausschließlich Binärbäume. Jedoch kann er durch
 einige geeignete Erweiterungen so modifiziert werden, dass er auch in der Lage wäre beliebige Bäume zu zeichnen.
