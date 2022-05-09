@@ -31,9 +31,9 @@ Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase w
 In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
 
 Dieser Algorithmus besitzt zwei Eingabeparameter, nämlich die Wurzel des Baumes und die Höhe des Baumes. Zu Beginn werden zwei
-ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge "Höhe des Baumes".
+ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge \glqq Höhe des Baumes\grqq.
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
-Zudem wird eine Variable namens "ModifikatorSumme" deklariert und mit null initialisiert.
+Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq deklariert und mit null initialisiert.
 
 Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten wie folgt bestimmt:
 Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
@@ -54,7 +54,7 @@ Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie fol
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
 (Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
 
-In der zweiten Phase wird zu Beginn eine Variable namens "ModifikatorSumme" deklariert und mit null initialisiert.
+In der zweiten Phase wird zu Beginn eine Variable namens \glqq ModifikatorSumme\grqq deklariert und mit null initialisiert.
 Hiernach wird über die Baumstruktur in einer modifizierten Pre-Order traversiert. Die ModifikatorSumme entspricht
 der Summe aus allen Modifikatoren der Väter eines Knotens. Um diese Summe zu berechnen wird bei dem Besuch eines Kind-Knotens
 der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes zurück auf den Vater wird entsprechend
@@ -91,7 +91,7 @@ indem die X-Koordinate mit einem Offset (hier zwei) addiert wird.
 
 Dieser Algorithmus wurde wie der erste Algorithmus in Java implementiert. Da der gezeigte Algorithmus
 am Beispiel von Binärbäumen gezeigt wird, wurde eine Binäre-Knoten-Klasse implemeniert,
-die von der Knoten-Klasse, gezeigt in der Abbildung \ref{code:knotenclass}, erbt. In dieser Klasse wurden
+die von der Knoten-Klasse, gezeigt im Quellcode \ref{code:knotenclass}, erbt. In dieser Klasse wurden
 Hilfsmethoden und zwei weitere Attribute definiert. Die Implementierung sieht vereinfacht wie folgt aus:
 
 \begin{lstlisting}[caption=Vereinfachte Implementierung der BinaryKnoten-Klasse, label=code:binaryknotenclass]
@@ -112,11 +112,11 @@ public class BinaryKnoten extends Knoten {
 \end{lstlisting}
 
 Als erstes wurde eine Prozedur mit dem Namen 
-"algorithmus2Verbessert" definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
+\glqq algorithmus2Verbessert\grqq definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
 und die Höhe des Baums. Zu Anfang werden alle Arrays und Variablen, wie im Ablauf 
 bereits beschrieben, initialisiert. Hiernach wird erstmalig in der Post-Order über 
 die Baum-Struktur rekursiv traversiert. Hierfür wird die in der Binären-Knoten-Klasse 
-zuvor erstellte Methode "traversPostOrder" genutzt. Diese übernimmt als Argument einen Consumer, 
+zuvor erstellte Methode \glqq traversPostOrder\grqq genutzt. Diese übernimmt als Argument einen Consumer, 
 in dem die einzelnen Knoten in der geforderten Reihenfolge übergeben werden. In dem übergebenem Consumer 
 wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt.
 
@@ -129,7 +129,7 @@ wurzel.traversPostOrder(k -> {
 \end{lstlisting}
 
 Die zweite Phase wurde so implementiert, dass iterativ über den Baum in der Pre-Order traversiert 
-wird. Die Implementierung entspricht dem zuvor gezeigten Ablauf in \ref{chap:kapitel3_2_Ablauf}. 
+wird. Die Implementierung entspricht dem zuvor gezeigten Ablauf in Kapitel \ref{chap:kapitel3_2_Ablauf}. 
 
 Wird diese Implementierung auf einen beispielhaften Baum angewendet, so kann das Ergebnis
 in der Abbildung \ref{pic:baum_algo_2} betrachtet werden.
