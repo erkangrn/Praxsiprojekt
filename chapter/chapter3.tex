@@ -34,10 +34,10 @@ während die anderen Algorithmen, neben den beiden oberen, noch weitere Anforder
 \label{chap:kapitel3_1_Ablauf}
 \subsection{Ablauf}
 \erstelltvon{Treulieb}
-Bevor die Funktionsweise des Algorithmus beschrieben werden kann, muss die Baumstruktur 
-wie folgt definiert sein: Sie benötigt eine Struktur die symbolisch für ein Knoten des Baums steht. 
-Diese Knoten-Struktur muss hierbei ihren Vater kennen, auf ihre Kinder zugreifen können sowie ihre Position und
-Höhe im Baum speichern können.
+Ziel dieses Algorithmus ist es, jedem Knoten eine genaue X- und Y-Koordinate in Abhängigkeit ihrer Beziehung zu ihrem Vor- und Nachgängern
+zuzuordnen. Dafür muss eine Datenstruktur definiert werden, welche dies ermöglicht. Jeder Knoten muss sowohl seinen Vater als auch eventuelle
+Kinder kennen. Zudem muss jeder Knoten in der Lage sein, seine X-Koordinate sowie seine Höhe und Y-Koordinate zu speichern. Da jeder Knoten
+nun seine Beziehungen kennt, kann über dem Baum traversiert werden. Zudem kann jeder Knoten nun so seine Koordinaten speichern.
 
 Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und die Höhe des Baumes.
 Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert:
@@ -76,7 +76,7 @@ class Knoten {
 	// Getter, Setter, weitere Hilfsmethoden...
 }
 \end{lstlisting}
-
+\todo{Datenstruktur herleiten}
 Nachdem diese Klasse erstellt wurde, kann der Algorithmus als Prozedur implementiert werden.
 Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
