@@ -101,12 +101,13 @@ dann wird RMOST auf \ac{LR} gesetzt und der Offset von RMOST um den Offset des K
 auf \ac{RR} gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert. 
 
 RMOST und LMOST korrekt festzulegen ist für den nächsten Schritt wichtig und notwendig. Diese beiden Knoten in einem Subtree 
-sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Dieser Schritt ist nur dann nötig, wenn 
+sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Threads sind eine Art \glqq Pseudo-Kante \grqq, 
+welche eingefügt werden, um sicherzustellen, dass sich zwei Teilbäume nicht berühren. Jene Hilfe ist speziell für diesen Algorithmus
+und findet in den anderen Algorithmen keine Anwendung. Dieser Schritt ist nur dann nötig, wenn 
 die beiden betrachteten Teilbäume eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
 geben dafür ein Beispiel an. Wenn der linke Subtree höher als der rechte Subtree ist, dann muss ein Thread von \ac{RR} zu dem am weitesten 
 rechts stehenden Knoten des linken Teilbaums auf der nächsten Höhe gelegt werden. Dieser Thread würde in dem Zeiger auf das linke Kind 
-von \ac{RR} gespeichert werden. Benötigt werden diese Threads als eine Art “Pseudo-Kante” um sicherzustellen, dass diese Teilbäume sich 
-nicht berühren und auseinander geschoben werden.
+von \ac{RR} gespeichert werden \cite[S.226]{q2}.
 
 Die zweite Phase des Algorithmus stellt die Prozedur “petrify” dar. Ziel dieser Prozedur ist es die relativen Offsets, 
 welche in der vorherigen Phase gesetzt worden, in absolute Koordinaten umzuwandeln. Zudem sorgt die Prozedur dafür, dass die Threads 
