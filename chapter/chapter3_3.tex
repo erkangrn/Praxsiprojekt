@@ -1,6 +1,6 @@
 \label{chap:kapitel3_3}
 \section{Algorithmus von Reingold und Tilford}
-\erstelltvon{Garan}
+
 Das Paper “Tidier Drawings of Trees” von Edward M. Reingold und John S. Tilford aus dem Jahre 1981,
 welches im IEEE Transaction on Software Engineering erschienen ist, handelt von einem Algorithmus zum Zeichnen von Bäumen im Ebenen-Layout\cite[]{q2}.
 Die Motivation der beiden Autoren für das Erstellen dieses Algorithmus beruht darauf, dass sie ein entscheidendes Problem an dem 
@@ -33,15 +33,6 @@ sondern es werden zwei Teilbäume unabhängig voneinander platziert und dann so 
 
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
-\erstelltvon{Garan/Treulieb}
-Zum Verständnis des Algorithmus müssen einige Begriffe und Abkürzungen verbindlich erklärt werden, 
-da diese essentiell für diesen Algorithmus sind.
-\begin{itemize}
-    \item LL: Der am weitesten links stehende Knoten im linken Subtree eines Knotens
-    \item LR: Der am weitesten rechts stehende Knoten im linken Subtree eines Knotens
-    \item RL: Der am weitesten links stehende Knoten im rechten Subtree eines Knotens
-    \item RR: Der am weitesten rechts stehende Knoten im rechten Subtree eines Knotens
-\end{itemize} 
 
 \begin{figure}[ht]
     \centering
@@ -61,7 +52,7 @@ da diese essentiell für diesen Algorithmus sind.
             \textbf{RR} & C & G & C & D & G & H & G & H \\
             \end{tabular}
     \end{minipage} 
-    \caption{Beispielhafte Bestimmung für LL, LR, RL, RR}
+    \caption{Beispielhafte Bestimmung für \ac{LL}, \ac{LR}, \ac{RL}, \ac{RR}}
 \end{figure}
 
 Der Algorithmus zum Zeichnen von Bäumen von Reingold und Tilford lässt sich in zwei Phasen unterteilen.
@@ -95,26 +86,26 @@ Kindes von der Summe der linken Offsets subtrahiert und der aktuelle Abstand um 
 Zeiger auf das linke Kind auf das linke Kind des linken Kindes gesetzt. Genau dasselbe wird auch für das rechte Kind geprüft und ausgeführt. 
 Falls danach der aktuelle Abstand kleiner als ein vorher festgelegter Mindestabstand ist, wird der Abstand zwischen den Kindern um den 
 Mindestabstand minus dem aktuellen Abstand erhöht. Außerdem wird der aktuelle Abstand dann auf den Mindestabstand gesetzt. Dies wird solange 
-ausgeführt, bis einer der beiden Zeiger (auf linkes/rechtes Kind) gleich \ac{NULL} ist. Diese Schleife sorgt dafür, dass entlang der rechten 
+ausgeführt, bis einer der beiden Zeiger (auf linkes/rechtes Kind) gleich NULL ist. Diese Schleife sorgt dafür, dass entlang der rechten 
 Kontur des linken Teilbaums und entlang der linken Kontur des rechten Teilbaums die Distanz zwischen den beiden bestimmt wird. 
 Gegebenenfalls werden dann die beiden Teilbäume auseinander geschoben, falls sie sich berühren \cite{q2}.
 
 Nach dieser Schleife wird der Offset des aktuellen Knotens auf die Hälfte des Abstandes zwischen den Kindern plus eins gesetzt. 
 Dieser Offset wird dann von der Summe der linken Offsets abgezogen und auf die Summe der rechten Offsets addiert. 
 
-Danach werden RMOST und LMOST mit Hilfe von LL, LR, RL und RR neu festgelegt. Wenn die Höhe von RL größer als die Höhe von LL ist oder 
-der aktuelle Knoten kein linkes Kind hat, dann setze LMOST auf RL und erhöhe den Offset von LMOST um den Offset des Knotens. 
-Ansonsten setze LMOST auf LL und ziehe vom Offset von LMOST den Offset des Knotens ab. Diese Abfrage wird für RMOST und LR sowie RR 
-wiederholt. Es wird geprüft, ob die Höhe von LR größer ist als die Höhe von RR oder der Knoten kein rechtes Kind hat. Wenn dies der Fall ist, 
-dann wird RMOST auf LR gesetzt und der Offset von RMOST um den Offset des Knotens verringert. Tritt dieser Fall nicht ein, dann wird RMOST 
-auf RR gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert. 
+Danach werden RMOST und LMOST mit Hilfe von \ac{LL}, \ac{LR}, \ac{RL} und \ac{RR} neu festgelegt. Wenn die Höhe von \ac{RL} größer als die Höhe von \ac{LL} ist oder 
+der aktuelle Knoten kein linkes Kind hat, dann setze LMOST auf \ac{RL} und erhöhe den Offset von LMOST um den Offset des Knotens. 
+Ansonsten setze LMOST auf \ac{LL} und ziehe vom Offset von LMOST den Offset des Knotens ab. Diese Abfrage wird für RMOST und \ac{LR} sowie \ac{RR} 
+wiederholt. Es wird geprüft, ob die Höhe von \ac{LR} größer ist als die Höhe von \ac{RR} oder der Knoten kein rechtes Kind hat. Wenn dies der Fall ist, 
+dann wird RMOST auf \ac{LR} gesetzt und der Offset von RMOST um den Offset des Knotens verringert. Tritt dieser Fall nicht ein, dann wird RMOST 
+auf \ac{RR} gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert. 
 
 RMOST und LMOST korrekt festzulegen ist für den nächsten Schritt wichtig und notwendig. Diese beiden Knoten in einem Subtree 
 sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Dieser Schritt ist nur dann nötig, wenn 
 die beiden betrachteten Teilbäume eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
-geben dafür ein Beispiel an. Wenn der linke Subtree höher als der rechte Subtree ist, dann muss ein Thread von RR zu dem am weitesten 
+geben dafür ein Beispiel an. Wenn der linke Subtree höher als der rechte Subtree ist, dann muss ein Thread von \ac{RR} zu dem am weitesten 
 rechts stehenden Knoten des linken Teilbaums auf der nächsten Höhe gelegt werden. Dieser Thread würde in dem Zeiger auf das linke Kind 
-von RR gespeichert werden. Benötigt werden diese Threads als eine Art “Pseudo-Kante” um sicherzustellen, dass diese Teilbäume sich 
+von \ac{RR} gespeichert werden. Benötigt werden diese Threads als eine Art “Pseudo-Kante” um sicherzustellen, dass diese Teilbäume sich 
 nicht berühren und auseinander geschoben werden.
 
 Die zweite Phase des Algorithmus stellt die Prozedur “petrify” dar. Ziel dieser Prozedur ist es die relativen Offsets, 
@@ -136,7 +127,6 @@ Offset des Vaters addiert. Ziel dessen ist, dass linke Kind links vom Vater und 
 
 
 \subsection{Implementierung in Java}
-\erstelltvon{Treulieb}
 
 \begin{figure}[H]
     \centering
@@ -210,7 +200,7 @@ und \ref{pic:baum_algo_3_n2} betrachtet werden.
 
 
 \subsection{Vor- und Nachteile}
-\erstelltvon{Garan}
+
 Ein Algorithmus, welcher Aesthetic 4 erfüllt, kann Bäume produzieren, welche nicht maximal schmal sind. 
 Für Reingold und Tilford ist das Erfüllen dieser Anforderung jedoch wichtiger als das Einhalten des physikalischen Limits, 
 da Aesthetic 4 dafür sorgt, dass diese Bäume für Menschen übersichtlicher und leichter zu verstehen sind \cite[]{q2}. Dafür ist der Algorithmus 

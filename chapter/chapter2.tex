@@ -2,14 +2,14 @@
 \label{chap:kapitel2}
 
 \section{Definition von Bäumen}
-\erstelltvon{Garan}
 
 Nach Wetherell und Shannon sind Bäume endliche, gerichtete, zusammenhängende, azyklische Graphen \cite[]{q1}. 
 Bäume bestehen lediglich aus zwei Elementen, nämlich den Knoten und den Kanten. Die Kanten sind gerichtet und verbinden die einzelnen 
 Knoten miteinander. Dabei hat jeder Knoten maximal einen Vorgänger, welcher als Vater bezeichnet wird, und null 
 bis n viele Nachfolger, welche Kinder genannt werden. Die Wurzel stellt hierbei einen besonderen Knoten dar, da sie der 
-einzige Knoten ohne Vorgänger ist. Eine weitere besondere Form von Knoten sind die Blätter. Diese verfügen über 
-keine Kinder \cite{q4}. Abbildung \ref{pic:simple_tree} zeigt einen einfachen Binärbaum.
+einzige Knoten ohne Vorgänger ist. Zudem besitzt jeder Knoten eine Höhe. Diese Höhe ist definiert als die Anzahl an Kanten zwischen dem
+Knoten und der Wurzel \cite[S.515]{q1}. Außerdem kann jeder Knoten Daten beinhalten. Eine weitere besondere Form von Knoten sind die Blätter. 
+Diese verfügen über keine Kinder \cite{q4}. Abbildung \ref{pic:simple_tree} zeigt einen einfachen Binärbaum.
 
 \begin{figure}[H]
     \centering
@@ -36,7 +36,6 @@ vorgestellten Algorithmen aber nicht notwendig.
 
 
 \section{Anwendungsgebiete}
-\erstelltvon{Treulieb}
 
 Bäume erfahren einen vielfältigen Einsatz in der Informatik, zum Beispiel 
 als Datenstruktur, als Syntaxbäume, als Ausdrucksbäume oder auch als 
@@ -50,8 +49,8 @@ werden, um Syntaxregeln zu überprüfen. Zudem werden Bäume verwendet, um mathe
 Ausdrücke auszuwerten. Hierfür wird ein sogenannter Ausdrucksbaum für einen 
 gegebenen mathematischen Ausdruck aufgestellt und ausgewertet. In der 
 Datenanalyse werden Bäume in Form von Entscheidungsbäumen verwendet. 
-Diese werden benutzt um Abhängigkeiten darzustellen. Die Blätter stellen 
-Kategorien dar und die Knoten Bedingungen. So können beispielsweise neue 
+Diese werden benutzt um Abhängigkeiten darzustellen. Die Knoten des Baumes stellen in diesem Fall Attribute dar und die Kanten des Knotens
+die verschiedenen Ausprägungen des Attributs. Die Blätter stellen die vorhergesagten Kategorien dar. So können beispielsweise neue 
 Datensätze, in Abhängigkeit zu ihren Werten, einer bestimmten Kategorie 
 zugeordnet werden.
 

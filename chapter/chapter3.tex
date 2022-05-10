@@ -1,5 +1,8 @@
 \chapter{Algorithmen zum Zeichnen von Bäumen}
 \label{chap:kapitel3}
+Im Folgenden werden drei verschiedene Algorithmen zum Zeichnen von Bäumen im Ebenen-Layout vorgestellt. Wie in Kapitel \ref{chap:einleitung}
+bereits angekündigt, wird jeweils auf den Ablauf, einer eigenen Implementierung in Java und auf die Vor- und Nachteile eingegangen. Ziel wird
+es sein, Verständnis für diese Algorithmen zu schaffen.
 
 \section{Naiver Algorithmus von Wetherell und Shannon}
 \erstelltvon{Garan}
@@ -23,7 +26,7 @@ parallel zueinander sein. Außerdem soll der Algorithmus beim Zeichnen eines Bau
 	itself) \cite[]{q1}.
 \end{quotation}
 Das bedeutet, dass der Algorithmus möglichst schmale Bäume zeichnen soll. Jedoch wird die Höhe des Baumes durch diese Anforderungen
-nicht eingeschränkt. Stattdessen bestimmt der Baum selbst seine Höhe \cite[]{q1}.
+nicht eingeschränkt. Stattdessen ist die Höhe durch den Baum vorgegeben \cite[]{q1}.
 
 \label{chap:kapitel3_1_Ablauf}
 \subsection{Ablauf}
@@ -71,7 +74,7 @@ class Knoten {
 }
 \end{lstlisting}
 
-Nachdem diese Klasse implemeniert wurde, kann der Algorithmus als Prozedur implementiert werden.
+Nachdem diese Klasse erstellt wurde, kann der Algorithmus als Prozedur implementiert werden.
 Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
@@ -109,6 +112,7 @@ gezeichnet wurde.
 Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
 Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Bei der Beziehung zwischen H als Vater und I und J als Sohn wird 
 deutlich, dass der von diesem Algorithmus gezeichnete Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten 
-aus, welche die Knoten beinhalten könnten. Egal ob I und J größer oder kleiner als H wären, sie würden trotzdem an der selben Position stehen. 
+aus, welche die Knoten beinhalten könnten. Egal ob die Daten, welche I und J beinhalten, größer oder kleiner als die Daten in H wären, 
+sie würden trotzdem an der selben Position stehen. 
 Deshalb definieren Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäumen erfüllen müssen.
 
