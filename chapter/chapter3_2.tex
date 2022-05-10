@@ -1,7 +1,5 @@
-
 \section{Verbesserter Algorithmus von Wetherell und Shannon}
 \label{chap:kapitel3_2}
-\erstelltvon{Treulieb}
 Wetherell und Shannon stellen in Ihrem Paper einen weiteren, verbesserten Algorithmus zum Zeichnen von Bäumen vor, welcher jedoch
 ausschließlich Binärbäume zeichnen kann\cite[]{q1}. Dieser Algorithmus weist die Nachteile des naiven Algorithmus nicht mehr auf.
 Dafür definieren sie zwei weitere Anforderungen, die der Algorithmus erfüllen soll. Jene Anforderungen sind speziell für
@@ -25,15 +23,14 @@ mit der Fig. 9 \cite[A modification of Algorithm 3]{q1} ersetzt.
 
 \label{chap:kapitel3_2_Ablauf}
 \subsection{Ablauf}
-\erstelltvon{Garan}
 
 Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase wird die vorläufige X-Koordinate der einzelnen Knoten bestimmt.
 In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
 
 Die Signatur des Algorithmus ist dieselbe wie im naiven Algorithmus. Zu Beginn werden zwei
-ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge \glqq Höhe des Baumes\grqq.
+ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge \glqq Höhe des Baumes\grqq{}.
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
-Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq deklariert und mit null initialisiert.
+Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert.
 
 Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten wie folgt bestimmt:
 Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
@@ -41,7 +38,7 @@ Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unt
 	\item Der Knoten ist ein Blatt
 	\item Der Knoten besitzt kein linkes Kind
 	\item Der Knoten besitzt kein rechtes Kind
-	\item Der Knoten besitzt zwei Kinder (links und rechts)
+	\item Der Knoten besitzt sowohl linkes als auch rechtes Kind
 \end{enumerate}
 
 Im ersten Fall entspricht die X-Koordinate dem Eintrag im Positions-Array in Abhängigkeit zu seiner Höhe.
@@ -54,7 +51,7 @@ Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie fol
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
 (Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
 
-In der zweiten Phase wird zu Beginn eine Variable namens \glqq ModifikatorSumme\grqq deklariert und mit null initialisiert.
+In der zweiten Phase wird zu Beginn eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert.
 Hiernach wird über die Baumstruktur in einer modifizierten Pre-Order traversiert. Die ModifikatorSumme entspricht
 der Summe aus allen Modifikatoren der Väter eines Knotens. Um diese Summe zu berechnen wird bei dem Besuch eines Kind-Knotens
 der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes zurück auf den Vater wird entsprechend
@@ -80,7 +77,6 @@ indem die X-Koordinate mit einem Offset (hier zwei) addiert wird.
 
 
 \subsection{Implementierung in Java}
-\erstelltvon{Treulieb}
 
 \begin{figure}[H]
     \centering
@@ -111,12 +107,12 @@ public class BinaryKnoten extends Knoten {
 }
 \end{lstlisting}
 
-Als erstes wurde eine Prozedur mit dem Namen 
-\glqq algorithmus2Verbessert\grqq definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
+Als erstes wurde eine Prozedur mit dem Namen \glqq algorithmus2Verbessert\grqq{} 
+definiert, die zwei Eingabeparameter besitzt: der Wurzelknoten des Baums 
 und die Höhe des Baums. Zu Anfang werden alle Arrays und Variablen, wie im Ablauf 
 bereits beschrieben, initialisiert. Hiernach wird erstmalig in der Post-Order über 
 die Baum-Struktur rekursiv traversiert. Hierfür wird die in der Binären-Knoten-Klasse 
-zuvor erstellte Methode \glqq traversPostOrder\grqq genutzt. Diese übernimmt als Argument einen Consumer, 
+zuvor erstellte Methode \glqq traversPostOrder\grqq{} genutzt. Diese übernimmt als Argument einen Consumer, 
 in dem die einzelnen Knoten in der geforderten Reihenfolge übergeben werden. In dem übergebenem Consumer 
 wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt.
 
@@ -135,7 +131,6 @@ Wird diese Implementierung auf einen beispielhaften Baum angewendet, so kann das
 in der Abbildung \ref{pic:baum_algo_2} betrachtet werden.
 
 \subsection{Vor- und Nachteile}
-\erstelltvon{Garan}
 Durch das Erfüllen der Anforderung, dass jeder Vater über seinen Kindern zentriert werden soll, kann der Algorithmus gegen
 die Anforderung an das physikalische Limit verstoßen. 
 Abbildung \ref{pic:baum_theorem_uglification} zeigt jenes Verhalten. Daraus schließen die beiden Autoren auf folgendes Theorem:

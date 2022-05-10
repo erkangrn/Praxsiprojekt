@@ -1,7 +1,7 @@
 \label{chap:kapitel3_3}
 \section{Algorithmus von Reingold und Tilford}
 
-Das Paper “Tidier Drawings of Trees” von Edward M. Reingold und John S. Tilford aus dem Jahre 1981,
+Das Paper \glqq Tidier Drawings of Trees\grqq{} von Edward M. Reingold und John S. Tilford aus dem Jahre 1981,
 welches im IEEE Transaction on Software Engineering erschienen ist, handelt von einem Algorithmus zum Zeichnen von Bäumen im Ebenen-Layout\cite[]{q2}.
 Die Motivation der beiden Autoren für das Erstellen dieses Algorithmus beruht darauf, dass sie ein entscheidendes Problem an dem 
 verbesserten Algorithmus von Wetherell und Shannon erkannt haben. Dieser Algorithmus ohne die Modifikation produziert Bäume, 
@@ -101,7 +101,7 @@ dann wird RMOST auf \ac{LR} gesetzt und der Offset von RMOST um den Offset des K
 auf \ac{RR} gesetzt und der Offset von RMOST mit dem Offset des Knotens addiert. 
 
 RMOST und LMOST korrekt festzulegen ist für den nächsten Schritt wichtig und notwendig. Diese beiden Knoten in einem Subtree 
-sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Threads sind eine Art \glqq Pseudo-Kante \grqq, 
+sind die einzigen, bei denen die Möglichkeit besteht, dass Threading angewandt wird. Threads sind eine Art \glqq Pseudo-Kante \grqq{}, 
 welche eingefügt werden, um sicherzustellen, dass sich zwei Teilbäume nicht berühren. Jene Hilfe ist speziell für diesen Algorithmus
 und findet in den anderen Algorithmen keine Anwendung. Dieser Schritt ist nur dann nötig, wenn 
 die beiden betrachteten Teilbäume eines Knotens unterschiedlich hoch sind und keiner von beiden leer ist. Reingold und Tilford 
@@ -144,8 +144,8 @@ Offset des Vaters addiert. Ziel dessen ist, dass linke Kind links vom Vater und 
 \end{figure}
 
 Um diesen Algorithmus implementieren zu können, muss die zuvor erstellte BinaryKnoten-Klasse um ein 
-Attribut erweitert werden: vom Typ Boolean mit dem Namen \glqq thread\grqq. Zudem wurde eine weitere Klasse 
-namens \glqq Extreme\grqq definiert, die wie zuvor beschrieben, implementiert wurde. Die Extreme-Klasse sieht wie folgt aus:
+Attribut erweitert werden: vom Typ Boolean mit dem Namen \glqq thread\grqq{}. Zudem wurde eine weitere Klasse 
+namens \glqq Extreme\grqq{} definiert, die wie zuvor beschrieben, implementiert wurde. Die Extreme-Klasse sieht wie folgt aus:
 
 \begin{lstlisting}[caption=Implementierung der Extreme-Klasse, label=code:algo3_extreme]
 private static class Extreme {
@@ -161,9 +161,9 @@ private static class Extreme {
 }
 \end{lstlisting}
 
-Ferner wurden die zuvor beschriebenen Prozeduren \glqq setup\grqq und \glqq petrify\grqq implementiert. Die implementierte Prozedur
-\glqq setup\grqq unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und besitzt 
-nur einen Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der \glqq traversPostOrder\grqq-Methode aus der 
+Ferner wurden die zuvor beschriebenen Prozeduren \glqq setup\grqq{} und \glqq petrify\grqq{} implementiert. Die implementierte Prozedur
+\glqq setup\grqq{} unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und besitzt 
+nur einen Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der \glqq traversPostOrder\grqq{}-Methode aus der 
 BinaryKnoten-Klasse über den Baum traversiert.
 
 \begin{lstlisting}[caption=Ausschnitt aus der setup-Prozedur, label=code:algo3_setup]
@@ -188,13 +188,13 @@ Ablauf aus dem Kapitel \ref{chap:kapitel3_1_Ablauf} berechnet. Dies bietet den V
 dass die Methodik zum Zeichnen der Bäume nicht verändert werden muss. Die weitere Implementierung folgt 
 der Beschreibung aus dem Ablauf.
 
-Die Implementierung der Prozedur \glqq petrify\grqq entspricht der Beschreibung aus dem Ablauf.
+Die Implementierung der Prozedur \glqq petrify\grqq{} entspricht der Beschreibung aus dem Ablauf.
 
-Hiernach wurde die Prozedur \glqq algorithmus3\grqq definiert. Diese ruft zu Beginn die beiden Prozeduren, 
-\glqq setup\grqq und \glqq petrify\grqq auf. Danach müssen die X-Koordinaten noch angepasst werden, da diese 
+Hiernach wurde die Prozedur \glqq algorithmus3\grqq{} definiert. Diese ruft zu Beginn die beiden Prozeduren, 
+\glqq setup\grqq{} und \glqq petrify\grqq{} auf. Danach müssen die X-Koordinaten noch angepasst werden, da diese 
 negativ sein können. Hierfür wird der kleinste X-Wert ermittelt, dessen absoluter Wert 
-addiert mit eins in der Variable \glqq offset\grqq gespeichert wird. Nun werden alle X-Koordinaten des 
-Baums mit dem Wert aus \glqq offset\grqq addiert. 
+addiert mit eins in der Variable \glqq offset\grqq{} gespeichert wird. Nun werden alle X-Koordinaten des 
+Baums mit dem Wert aus \glqq offset\grqq{} addiert. 
 
 Zwei beispielhafte Ergebnisse können in den Abbildungen \ref{pic:baum_algo_3_n1} 
 und \ref{pic:baum_algo_3_n2} betrachtet werden. 

@@ -5,9 +5,8 @@ bereits angekündigt, wird jeweils auf den Ablauf, einer eigenen Implementierung
 es sein, Verständnis für diese Algorithmen zu schaffen.
 
 \section{Naiver Algorithmus von Wetherell und Shannon}
-\erstelltvon{Garan}
 
-Das Paper “Tidy Drawings of Trees” von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
+Das Paper \glqq Tidy Drawings of Trees\grqq{}{} von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
 welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen\cite[]{q1}.
 Der erste Algorithmus, der von den beiden Autoren beschrieben und vorgestellt wird, ist ein naiver Algorithmus 
 zum Zeichnen von Bäumen. Dieser Algorithmus soll dabei zwei Anforderungen erfüllen. Die erste Anforderung wird dabei
@@ -33,7 +32,6 @@ während die anderen Algorithmen, neben den beiden oberen, noch weitere Anforder
 
 \label{chap:kapitel3_1_Ablauf}
 \subsection{Ablauf}
-\erstelltvon{Treulieb}
 Ziel dieses Algorithmus ist es, jedem Knoten eine genaue X- und Y-Koordinate in Abhängigkeit ihrer Beziehung zu ihrem Vor- und Nachgängern
 zuzuordnen. Dafür muss eine Datenstruktur definiert werden, welche dies ermöglicht. Jeder Knoten muss sowohl seinen Vater als auch eventuelle
 Kinder kennen. Zudem muss jeder Knoten in der Lage sein, seine X-Koordinate sowie seine Höhe und Y-Koordinate zu speichern. Da jeder Knoten
@@ -54,7 +52,6 @@ Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt.
 Nach dem Durchlaufen aller Knoten des Baumes sind alle X- und Y-Koordinaten gesetzt und der Baum kann gezeichnet werden.
 
 \subsection{Implementierung in Java}
-\erstelltvon{Treulieb}
 Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur
 implementiert. Zusätzlich wurden Methoden hinzugefügt, die beispielsweise
 ein einfaches Traversieren über den Baum ermöglichen oder zum Setzen von Kindern.
@@ -76,13 +73,15 @@ class Knoten {
 	// Getter, Setter, weitere Hilfsmethoden...
 }
 \end{lstlisting}
-\todo{Datenstruktur herleiten}
-Nachdem diese Klasse erstellt wurde, kann der Algorithmus als Prozedur implementiert werden.
-Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
+Am Quellcode \ref{code:knotenclass} erkennt man die im vorherigen Kapitel beschriebene Datenstruktur. Die Klasse Knoten beinhaltet genau einen
+Vater, ein Array von Kindern, da jeder Knoten mehr als ein Kind haben kann, sowie die Höhe und die Koordinaten. Zusätzlich beinhaltet diese 
+Klasse auch noch die Möglichkeit jedem Knoten Daten mitzugeben. Für das Verständnis des Algorithmus ist dies aber nicht notwendig und wird
+im Folgenden nicht mehr berücksichtigt. Nachdem diese Klasse erstellt wurde, kann der Algorithmus als Prozedur implementiert werden.
+Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq{} erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 
-\begin{lstlisting}[caption=Implementierung des naiven Algorithmus]
+\begin{lstlisting}[caption=Implementierung des naiven Algorithmus, label=code:naiverAlgo]
 public static void algorithmus1(Knoten wurzel, int maximaleHoehe) 
 {
 	int[] nextX = new int[maximaleHoehe];
@@ -97,7 +96,9 @@ public static void algorithmus1(Knoten wurzel, int maximaleHoehe)
 	});
 }
 \end{lstlisting}
-
+An \ref{code:naiverAlgo} erkennt man, wie die Koordinaten gesetzt werden. Ein Integer-Array wird mit Einsen gefüllt. Danach wird über den Baum
+traversiert. Dabei wird bei jedem besuchten Knoten die Setter Methoden für die beiden Koordinaten aufgerufen. Zum Schluss wird das Array an der 
+Höhe des aktuell besuchten Knotens inkrementiert, damit der nächste Knoten auf der selben Höhe um eine Position weiter rechts platziert wird.
 Wird diese Prozedur mit einer Baumstruktur aufgerufen, so werden alle X- und Y-Koordinaten gesetzt.
 Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_algo_1} betrachet werden.
 
@@ -109,7 +110,6 @@ Ein Beispiel für einen gezeichneten Baum kann in der Abbildung \ref{pic:baum_al
 \end{figure}
 
 \subsection{Vor- und Nachteile}
-\erstelltvon{Garan}
 Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-Implementierung des naiven Algorithmus von Wetherell und Shannon
 gezeichnet wurde.
 Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
