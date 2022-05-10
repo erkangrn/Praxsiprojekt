@@ -6,7 +6,7 @@ es sein, Verständnis für diese Algorithmen zu schaffen.
 
 \section{Naiver Algorithmus von Wetherell und Shannon}
 
-Das Paper \glqq Tidy Drawings of Trees\grqq{}{} von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
+Das Paper \glqq Tidy Drawings of Trees\grqq{} von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
 welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen\cite[]{q1}.
 Der erste Algorithmus, der von den beiden Autoren beschrieben und vorgestellt wird, ist ein naiver Algorithmus 
 zum Zeichnen von Bäumen. Dieser Algorithmus soll dabei zwei Anforderungen erfüllen. Die erste Anforderung wird dabei
@@ -50,6 +50,8 @@ mit der folgenden Formel berechnet: $$y := 2 * HoeheDesKnotens + 1$$
 Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
 
 Nach dem Durchlaufen aller Knoten des Baumes sind alle X- und Y-Koordinaten gesetzt und der Baum kann gezeichnet werden.
+Hierbei bekommen die Knoten eine feste vordefinierte Größe. Die Kanten werden dann als Linien zwischen Vätern und Kindern 
+gezeichnet.
 
 \subsection{Implementierung in Java}
 Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur

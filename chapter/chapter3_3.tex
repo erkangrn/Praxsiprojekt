@@ -7,7 +7,8 @@ Die Motivation der beiden Autoren für das Erstellen dieses Algorithmus beruht d
 verbesserten Algorithmus von Wetherell und Shannon erkannt haben. Dieser Algorithmus ohne die Modifikation produziert Bäume, 
 welche nicht maximal schmal sind, da das Zentrieren der Väter erzwungen wird. Die modifizierte Variante des 
 Algorithmus produziert zwar maximal schmale Bäume, dafür können diese wesentlich unübersichtlicher sein, 
-was der untere Baum auf Abbildung \ref{pic:baum_theorem_uglification} zeigt. 
+was der untere Baum auf Abbildung \ref{pic:baum_theorem_uglification} zeigt\footnote[1]{In dieser Arbeit wurde lediglich die modifizierte Variante
+vorgestellt, siehe \ref{chap:kapitel3_2}.}. 
 Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Teilbäume von Knoten außerhalb des Teilbäume 
 beeinflusst werden. Daraus folgern die beiden, dass es mit dem Algorithmus von Wetherell und Shannon dazu kommen kann, dass ein Baum und 
 die Spiegelung desselben Baumes keine Spiegelbilder ergeben. Jedoch wäre es nach Reingold und Tilford wünschenswert, wenn symmetrische Bäume 
@@ -52,7 +53,7 @@ sondern es werden zwei Teilbäume unabhängig voneinander platziert und dann so 
             \textbf{RR} & C & G & C & D & G & H & G & H \\
             \end{tabular}
     \end{minipage} 
-    \caption{Beispielhafte Bestimmung für \ac{LL}, \ac{LR}, \ac{RL}, \ac{RR}}
+    \caption{Beispielhafte Bestimmung für LL, LR, RL, RR}
 \end{figure}
 
 Der Algorithmus zum Zeichnen von Bäumen von Reingold und Tilford lässt sich in zwei Phasen unterteilen.
