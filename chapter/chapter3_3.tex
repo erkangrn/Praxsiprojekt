@@ -12,13 +12,13 @@ vorgestellt, siehe \ref{chap:kapitel3_2}.}.
 Reingold und Tilford erkennen, dass das Problem an dem Algorithmus ist, dass die einzelnen Teilbäume von Knoten außerhalb des Teilbäume 
 beeinflusst werden. Daraus folgern die beiden, dass es mit dem Algorithmus von Wetherell und Shannon dazu kommen kann, dass ein Baum und 
 die Spiegelung desselben Baumes keine Spiegelbilder ergeben. Jedoch wäre es nach Reingold und Tilford wünschenswert, wenn symmetrische Bäume 
-auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet \cite[]{q2}.
+auch symmetrisch gezeichnet werden. Daraus wird eine weitere Anforderung an Algorithmen zum Zeichnen von Bäumen abgeleitet \cite[S.224]{q2}.
 
 \begin{quotation}
 	\textit{Aesthetic 4:} A tree and its mirror image should produce
     drawings that are reflections of one another; moreover, a subtree
     should be drawn the same way regardless of where it
-    occurs in the tree \cite[]{q4}.
+    occurs in the tree \cite[S.224]{q4}.
 \end{quotation}
 
 Wenn der Algorithmus eine Spiegelung eines Baumes erhält und der durch den Algorithmus gezeichnete Baum ein exaktes Spiegelbild des 
@@ -30,7 +30,7 @@ Teilbäume immer gleich gezeichnet werden, unabhängig von ihrer Position im Bau
 
 Um diese Anforderung zu erfüllen, dürfen Knoten außerhalb eines Teilbaums die Knoten innerhalb eines Teilbaums nicht beeinflussen. 
 Damit das erreicht wird, werden bei diesem Algorithmus nicht einzelne Knoten platziert (wie bei Wetherell und Shannon), 
-sondern es werden zwei Teilbäume unabhängig voneinander platziert und dann so nah wie möglich aneinander geschoben \cite[]{q2}. 
+sondern es werden zwei Teilbäume unabhängig voneinander betrachtet und dann so nah wie möglich aneinander platziert \cite[S.225]{q2}. 
 
 \label{chap:kapitel3_3_Ablauf}
 \subsection{Ablauf}
@@ -89,7 +89,7 @@ Falls danach der aktuelle Abstand kleiner als ein vorher festgelegter Mindestabs
 Mindestabstand minus dem aktuellen Abstand erhöht. Außerdem wird der aktuelle Abstand dann auf den Mindestabstand gesetzt. Dies wird solange 
 ausgeführt, bis einer der beiden Zeiger (auf linkes/rechtes Kind) gleich NULL ist. Diese Schleife sorgt dafür, dass entlang der rechten 
 Kontur des linken Teilbaums und entlang der linken Kontur des rechten Teilbaums die Distanz zwischen den beiden bestimmt wird. 
-Gegebenenfalls werden dann die beiden Teilbäume auseinander geschoben, falls sie sich berühren \cite{q2}.
+Gegebenenfalls werden dann die beiden Teilbäume auseinander geschoben, falls sie sich berühren \cite[S.226]{q2}.
 
 Nach dieser Schleife wird der Offset des aktuellen Knotens auf die Hälfte des Abstandes zwischen den Kindern plus eins gesetzt. 
 Dieser Offset wird dann von der Summe der linken Offsets abgezogen und auf die Summe der rechten Offsets addiert. 
@@ -205,7 +205,7 @@ und \ref{pic:baum_algo_3_n2} betrachtet werden.
 
 Ein Algorithmus, welcher Aesthetic 4 erfüllt, kann Bäume produzieren, welche nicht maximal schmal sind. 
 Für Reingold und Tilford ist das Erfüllen dieser Anforderung jedoch wichtiger als das Einhalten des physikalischen Limits, 
-da Aesthetic 4 dafür sorgt, dass diese Bäume für Menschen übersichtlicher und leichter zu verstehen sind \cite[]{q2}. Dafür ist der Algorithmus 
+da Aesthetic 4 dafür sorgt, dass diese Bäume für Menschen übersichtlicher und leichter zu verstehen sind \cite[S.224]{q2}. Dafür ist der Algorithmus 
 jedoch, gemessen an den Zeilen im Programmcode, der längste. Selbst bei komplexeren Bäumen, wie in Abbildung \ref{pic:baum_algo_3_n2},
 wird ein übersichtlicher und ästhetisch ansprechender Baum gezeichnet. 
 
