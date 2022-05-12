@@ -28,12 +28,13 @@ Dieser Algorithmus lässt sich in zwei Phasen unterteilen. In der ersten Phase w
 In der zweiten Phase werden diese X-Koordinaten bei Bedarf nochmals abgeändert sowie die Y-Koordinate berechnet.
 
 Die Signatur des Algorithmus ist dieselbe wie im naiven Algorithmus. Zu Beginn werden zwei
-ganzzahlige Arrays, ein Positions-Array und ein Modifikator-Array, definiert. Diese besitzen die Länge \glqq Höhe des Baumes\grqq{}.
+ganzzahlige Arrays, ein Positions-Array (beinhaltet die nächste freie x-Koordinate auf einer bestimmten Höhe) und ein 
+Modifikator-Array (), definiert. Diese besitzen die Länge \glqq Höhe des Baumes\grqq{}.
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
 Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert.
 
-Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten wie folgt bestimmt:
-Bei der Bestimmung der X-Koordinate wird zwischen vier verschiedenen Fällen unterschieden:
+Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten bestimmt.
+Dabei wird zwischen vier verschiedenen Fällen unterschieden:
 \begin{enumerate}
 	\item Der Knoten ist ein Blatt
 	\item Der Knoten besitzt kein linkes Kind
@@ -45,7 +46,7 @@ Im ersten Fall entspricht die X-Koordinate dem Eintrag im Positions-Array in Abh
 Im zweiten Fall wird der Knoten links, mit einem Versatz von eins, von seinem rechten Kind positioniert.
 Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
 in der Mitte zwischen seinen Kinder positioniert. Hierbei kann die folgende Formel genutzt werden: $$x = (left.x + right.x) / 2.$$
-Hiernach wird der Modifikator bestimmt. Dafür wird der der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
+Hiernach wird der Modifikator bestimmt. Dafür wird der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
 oder wie folgt berechnet: Die nächste freie Position der Ebene subtrahiert von der zuvor berechneten X-Koordinate.
 Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
