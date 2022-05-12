@@ -144,21 +144,15 @@ Offset des Vaters addiert. Ziel dessen ist, dass linke Kind links vom Vater und 
     \label{pic:baum_algo_3_n2} 
 \end{figure}
 
-Um diesen Algorithmus implementieren zu können, muss die zuvor erstellte BinaryKnoten-Klasse um ein 
+Um diesen Algorithmus implementieren zu können, muss die zuvor erstellte BinaryKnoten-Klasse (siehe Quellcode \ref{code:binaryknotenclass}) um ein 
 Attribut erweitert werden: vom Typ Boolean mit dem Namen \glqq thread\grqq{}. Zudem wurde eine weitere Klasse 
 namens \glqq Extreme\grqq{} definiert, die wie zuvor beschrieben, implementiert wurde. Die Extreme-Klasse sieht wie folgt aus:
 
 \begin{lstlisting}[caption=Implementierung der Extreme-Klasse, label=code:algo3_extreme]
-private static class Extreme {
-    BinaryKnoten knoten;
+static class Extreme<T> {
+    BinaryKnoten<T> knoten;
     int offset;
     int level;
-    
-    void set(BinaryKnoten k, int offset) {
-        this.knoten = k;
-        this.level = k.getHoehe();
-        this.offset = offset;
-    }
 }
 \end{lstlisting}
 
@@ -191,7 +185,24 @@ der Beschreibung aus dem Ablauf.
 
 Die Implementierung der Prozedur \glqq petrify\grqq{} entspricht der Beschreibung aus dem Ablauf.
 
-Hiernach wurde die Prozedur \glqq algorithmus3\grqq{} definiert. Diese ruft zu Beginn die beiden Prozeduren, 
+\begin{lstlisting}[caption=Ausschnitt aus der algorithmus3-Prozedur, label=code:algo3]
+public static <T> void algorithmus3(BinaryKnoten<T> wurzel) {
+    // Aufrufen der beiden Algorithmus-Spezifischen Prozeduren
+    setup(wurzel);
+    petrify(wurzel, 0);
+
+    // Ermitteln des kleinsten x-Wertes...
+    // minX := kleinster X-Wert;
+
+    final int offset = Math.abs(minX) + 1;
+
+    // Verschieben aller Knoten nach rechts
+    wurzel.traversPreOrder(x -> x.setX(x.getX() + offset));
+}
+\end{lstlisting}
+
+Hiernach wurde die Prozedur \glqq algorithmus3\grqq{} definiert, die im Codeausschnitt \ref{code:algo3} gezeigt wird.
+Diese ruft zu Beginn die beiden Prozeduren, 
 \glqq setup\grqq{} und \glqq petrify\grqq{} auf. Danach müssen die X-Koordinaten noch angepasst werden, da diese 
 negativ sein können. Hierfür wird der kleinste X-Wert ermittelt, dessen absoluter Wert 
 addiert mit eins in der Variable \glqq offset\grqq{} gespeichert wird. Nun werden alle X-Koordinaten des 
