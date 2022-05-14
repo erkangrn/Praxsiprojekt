@@ -32,7 +32,8 @@ ganzzahlige Arrays, ein Positions-Array (beinhaltet die nächste freie x-Koordin
 Modifikator-Array (beinhaltet notwendigen Versatz zwischen den Knoten auf einer Höhe), definiert. Diese besitzen die Länge 
 \glqq Höhe des Baumes\grqq{}.
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
-Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert.
+Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq{} benötigt, welche am Anfang mit null initialisiert wird. Diese Variable wird 
+in der zweiten Phase benötigt und speichert alle Modifikatoren von allen Vorgängern eines Knotens.
 
 Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten bestimmt.
 Dabei wird zwischen vier verschiedenen Fällen unterschieden:
@@ -46,7 +47,7 @@ Dabei wird zwischen vier verschiedenen Fällen unterschieden:
 Im ersten Fall bekommt der Knoten die nächste freie X-Koordinate auf seiner Höhe. 
 Im zweiten Fall wird der Knoten links, mit einem Versatz von eins, von seinem rechten Kind positioniert.
 Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
-in der Mitte zwischen seinen Kindern positioniert. Hierbei kann die folgende Formel genutzt werden: $$x = (left.x + right.x) / 2.$$
+in der Mitte zwischen seinen Kindern positioniert. Hierbei wird die folgende Formel genutzt: $$x = (left.x + right.x) / 2.$$
 Hiernach wird der Modifikator bestimmt. Dafür wird der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
 oder wie folgt berechnet: Die nächste freie Position der Ebene subtrahiert von der zuvor berechneten X-Koordinate.
 Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
