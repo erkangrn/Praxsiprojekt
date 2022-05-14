@@ -51,19 +51,16 @@ in der Mitte zwischen seinen Kindern positioniert. Hierbei wird die folgende For
 \todo{Eventuell Gleitkommazahl}
 Bei dem zweiten und vierten Fall kann es passieren, dass ein Knoten links von der eigentlich nächsten freien X-Koordinate platziert wird.
 Tritt dies ein, so wird das Modifikator-Array angepasst, indem der nötige Versatz auf der Ebene des Knoten auf die Differenz zwischen
-der vorläufigen X-Koordinate und der eigentlich nächsten freien X-Koordinate gesetzt wird. Sollte dieser Knoten zudem kein Blatt sein, dann
+der vorläufigen X-Koordinate und der eigentlich nächsten freien X-Koordinate gesetzt wird. Außerdem merkt sich jeder Knoten den Modifikator
+auf seiner Höhe, was im zweiten Teil des Algorithmus benötigt wird. Sollte dieser Knoten zudem kein Blatt sein, dann
 wird seine vorläufige X-Koordinate nochmal abgeändert. Diese wird dann mit dem Versatz aus dem Array auf seiner Höhe addiert, also nach rechts
 verschoben. Zum Schluss wird die nächste freie X-Koordinate auf der Ebene bestimmt. Dafür wird die X-Koordinate des Knoten um einen 
-bestimmten Wert addiert, hier wird zwei genutzt. 
-Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
-X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
-(Wert aus dem Modifikator-Array am Index: Höhe des Knotens im Baum).
+bestimmten Wert addiert (hier zwei) und in das Positions-Array (Index: Höhe des Knotens) geschrieben.
 
-In der zweiten Phase wird zu Beginn eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert.
-Hiernach wird über die Baumstruktur in einer modifizierten Pre-Order traversiert. Die ModifikatorSumme entspricht
-der Summe aus allen Modifikatoren der Väter eines Knotens. Um diese Summe zu berechnen wird bei dem Besuch eines Kind-Knotens
-der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes zurück auf den Vater wird entsprechend
-der knotenspezifische Modifikator von der globalen ModifikatorSumme abgezogen.
+In der zweiten Phase wird zu Beginn eine Variable namens \glqq ModifikatorSumme\grqq{} deklariert und mit null initialisiert. 
+Die ModifikatorSumme entspricht der Summe aus allen Modifikatoren der Vorgänger eines Knotens. Um diese Summe zu berechnen, 
+wird bei dem Besuch eines Kind-Knotens der spezifische Modifikator des Vaters auf die Summe addiert. Beim Übergang eines Kindes 
+zurück auf den Vater wird entsprechend der knotenspezifische Modifikator von der globalen ModifikatorSumme abgezogen.
 
 Da die Pre-Order Traversierung vorgibt, erst den linken Teilbaum, dann den Knoten und zum Schluss den rechten Teilbaum zu besuchen,
 wird zunächst beginnend von der Wurzel aus, der am weitesten links unten stehende Knoten besucht. Abbildung \ref{pic:baum_algo_2}
@@ -78,10 +75,10 @@ Falls der Knoten nicht die Wurzel ist, der Vater des Knotens bereits besucht und
 kleiner als die X-Koordinate des Vaters plus eins ist, dann wird die X-Koordinate des Knotens auf die X-Koordinate des Vaters plus eins gesetzt.
 Ähnlich wie im Fall vorher dient diese Überprüfung dazu, den Knoten richtig zu positionieren. Hier wird dadurch verhindert,
 dass der Knoten genau unter seinem Vater steht. Stattdessen wird sichergestellt, dass der Knoten rechts von seinem Vater steht,
-welcher der rechte Sohn sein muss, da der Vater bereits besucht und positioniert wurde. Nun ist die X-Koordinate des Knotens final
-bestimmt worden. Die Y-Koordinate wird genau wie im naiven Algorithmus bestimmt, indem die Höhe des Knotens mit zwei multipliziert
-und mit einem Offset (hier eins) addiert wird. Zum Schluss wird die nächste freie X-Position auf der Höhe des Knotens bestimmt,
-indem die X-Koordinate mit einem Offset (hier zwei) addiert wird. 
+welcher der rechte Sohn sein muss, da der Vater bereits besucht und positioniert wurde. 
+Nun ist die X-Koordinate des Knotens final bestimmt worden. Die Y-Koordinate wird genau wie im naiven Algorithmus bestimmt, 
+indem die Höhe des Knotens mit zwei multipliziert und mit einem Versatz (hier eins) addiert wird. Zum Schluss wird die nächste 
+freie X-Position auf der Höhe des Knotens bestimmt, indem die X-Koordinate mit einem Versatz (hier zwei) addiert wird. 
 
 
 \subsection{Implementierung in Java}
