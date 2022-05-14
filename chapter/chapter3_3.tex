@@ -159,20 +159,20 @@ static class Extreme<T> {
 Ferner wurden die zuvor beschriebenen Prozeduren \glqq setup\grqq{} und \glqq petrify\grqq{} implementiert. Die implementierte Prozedur
 \glqq setup\grqq{} unterscheidet sich zum zuvor beschriebenen Ablauf. Sie wird nun nicht mehr rekursiv aufgerufen und besitzt 
 nur einen Eingabeparameter, den Wurzelknoten. Hiernach wird mithilfe der \glqq traversPostOrder\grqq{}-Methode aus der 
-BinaryKnoten-Klasse über den Baum traversiert.
+BinaryKnoten-Klasse über den Baum traversiert. Diese Änderung kann in dem Codeausschnitt \ref{code:algo3_setup} betrachtet werden.
 
 \begin{lstlisting}[caption=Ausschnitt aus der setup-Prozedur, label=code:algo3_setup]
-public static void setup(BinaryKnoten wurzel) {
+public static <T> void setup(BinaryKnoten<T> wurzel) {
     // Initialisierungen von Variablen
     // <...>
     // Ueber den Baum in der Post-Order traversieren
     wurzel.traversPostOrder(k -> {
-        BinaryKnoten knoten = (BinaryKnoten) k;
+        BinaryKnoten<T> knoten = (BinaryKnoten<T>) k;
 
         // Bestimmen der Y-Koordinate
         knoten.setY(2 * knoten.getHoehe() + 1);
 
-        // Vorlaeufige relative X-Koordinate bestimmem
+        // Vorlaeufige relative X-Koordinate bestimmen
         // <...>
     }
 }
