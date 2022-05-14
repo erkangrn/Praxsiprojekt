@@ -48,7 +48,11 @@ Im ersten Fall bekommt der Knoten die nächste freie X-Koordinate auf seiner Hö
 Im zweiten Fall wird der Knoten links, mit einem Versatz von eins, von seinem rechten Kind positioniert.
 Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
 in der Mitte zwischen seinen Kindern positioniert. Hierbei wird die folgende Formel genutzt: $$x = (left.x + right.x) / 2.$$
-Hiernach wird der Modifikator bestimmt. Dafür wird der größere Wert des entweder bereits existierenden Modifikator der Ebene genommen
+\todo{Eventuell Gleitkommazahl}
+Falls die nächste freie X-Position auf der Ebene subtrahiert von 
+
+Hiernach bekommt das Modifikator-Array auf der Höhe des Knotens einen neuen Wert. Dafür wird der größere Wert des entweder bereits 
+existierenden Modifikator der Ebene genommen
 oder wie folgt berechnet: Die nächste freie Position der Ebene subtrahiert von der zuvor berechneten X-Koordinate.
 Nun wird der Wert im Position-Array am Index (Höhe des Knotens im Baum) wie folgt neu berechnet:
 X-Koordinate des Knoten plus eins. Zusätzlich wird der spezifische Modifikator des Knotens gesetzt
