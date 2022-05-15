@@ -32,8 +32,6 @@ ganzzahlige Arrays, ein Positions-Array (beinhaltet die nächste freie x-Koordin
 Modifikator-Array (beinhaltet notwendigen Versatz zwischen den Knoten auf einer Höhe), definiert. Diese besitzen die Länge 
 \glqq Höhe des Baumes\grqq{}.
 Hiernach müssen alle Elemente des Positions-Array mit eins und alle Elemente des Modifikator-Array mit null initialisiert werden.
-Zudem wird eine Variable namens \glqq ModifikatorSumme\grqq{} benötigt, welche am Anfang mit null initialisiert wird. Diese Variable wird 
-in der zweiten Phase benötigt und speichert alle Modifikatoren von allen Vorgängern eines Knotens.
 
 Durch eine Post-Order-Traversierung werden die vorläufigen x-Koordinaten der Knoten bestimmt.
 Dabei wird zwischen vier verschiedenen Fällen unterschieden:
@@ -46,15 +44,15 @@ Dabei wird zwischen vier verschiedenen Fällen unterschieden:
 
 Im ersten Fall bekommt der Knoten die nächste freie X-Koordinate auf seiner Höhe. 
 Im zweiten Fall wird der Knoten links, mit einem Versatz von eins, von seinem rechten Kind positioniert.
-Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Sohn positioniert. Im letzten Fall wird der Knoten
+Im dritten Fall wird dieser rechts, mit einem Versatz von eins, von seinem linken Kind positioniert. Im letzten Fall wird der Knoten
 in der Mitte zwischen seinen Kindern positioniert. Hierbei wird die folgende Formel genutzt: $$x = (left.x + right.x) / 2.$$
 Bei dem zweiten und vierten Fall kann es passieren, dass ein Knoten links von der eigentlich nächsten freien X-Koordinate platziert wird.
 Tritt dies ein, so wird das Modifikator-Array angepasst, indem der nötige Versatz auf der Ebene des Knoten auf die Differenz zwischen
 der vorläufigen X-Koordinate und der eigentlich nächsten freien X-Koordinate gesetzt wird. Außerdem merkt sich jeder Knoten den Modifikator
 auf seiner Höhe, was im zweiten Teil des Algorithmus benötigt wird. Sollte dieser Knoten zudem kein Blatt sein, dann
-wird seine vorläufige X-Koordinate nochmal abgeändert. Diese wird dann mit dem Versatz aus dem Array auf seiner Höhe addiert, also nach rechts
-verschoben. Zum Schluss wird die nächste freie X-Koordinate auf der Ebene bestimmt. Dafür wird die X-Koordinate des Knoten um einen 
-bestimmten Wert addiert (hier zwei) und in das Positions-Array (Index: Höhe des Knotens) geschrieben.\\
+wird seine vorläufige X-Koordinate nochmal abgeändert. Diese wird dann mit dem Versatz aus dem Modifikator-Array auf seiner Höhe addiert, 
+also nach rechts verschoben. Zum Schluss wird die nächste freie X-Koordinate auf der Ebene bestimmt. Dafür wird die X-Koordinate 
+des Knoten um einen  bestimmten Wert addiert (hier zwei) und in das Positions-Array (Index: Höhe des Knotens) geschrieben.\\
 
 In der zweiten Phase wird eine In-Order-Traversierung über dem Baum ausgeführt. Da diese vorgibt, erst den linken Teilbaum, dann den Knoten
 und zum Schluss den rechten Teilbaum zu besuchen, wird zunächst, beginnend von der Wurzel aus, der am weitesten links unten stehende Knoten 
@@ -64,8 +62,8 @@ X-Koordinate auf der Höhe des Knotens gesetzt oder auf die vorläufige X-Koordi
 der ersten Phase für jeden Knoten bestimmt worden. Dabei wird der kleinere der beiden möglichen Werte genutzt. 
 Dies wird gemacht, um sicherzustellen, dass sich der Knoten möglichst weit links befindet und somit die Anforderung an das 
 physikalische Limit erfüllt wird.
-Sollte ein Knoten nun links von seinem linken Sohn bzw. rechts von seinem rechten Sohn stehen, dann wird der Knoten so verschoben, dass dieser
-rechts von seinem linken Sohn bzw. links von seinem rechten Sohn steht. Dadurch wird garantiert, dass jedes linke Kind links
+Sollte ein Knoten nun links von seinem linken Kind bzw. rechts von seinem rechten Kind stehen, dann wird der Knoten so verschoben, dass dieser
+rechts von seinem linken Kind bzw. links von seinem rechten Kind steht. Dadurch wird garantiert, dass jedes linke Kind links
 und jedes rechte Kind rechts von seinem Vater steht.
 Nun ist die X-Koordinate des Knotens final bestimmt worden. Die Y-Koordinate wird genau wie im naiven Algorithmus bestimmt, 
 indem die Höhe des Knotens mit zwei multipliziert und mit einem Versatz (hier eins) addiert wird. Zum Schluss wird die nächste 
