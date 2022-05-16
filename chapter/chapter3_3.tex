@@ -98,6 +98,7 @@ ob der Knoten einen Thread hat. Da Threads Blätter sein müssen, werden die Ver
 um keinen Thread fälschlicherweise als Kante darzustellen. Dann setzt die Prozedur die finale X-Koordinate des Knotens auf den 
 übergebenen Parameter. Zum Schluss wird “petrify” wie folgt rekursiv aufgerufen:
 
+\newpage
 \begin{lstlisting}[caption=Rekursiver Aufruf von Petrify (Pre-Order)]
     PETRIFY(T.LLINK, XPOS - T.OFFSET);
     PETRIFY(T.RLINK, XPOS + T.OFFSET);
@@ -164,6 +165,7 @@ der Beschreibung aus dem Ablauf.
 
 Die Implementierung der Prozedur \glqq petrify\grqq{} entspricht der Beschreibung aus dem Ablauf.
 
+\newpage
 \begin{lstlisting}[caption=Ausschnitt aus der algorithmus3-Prozedur, label=code:algo3]
 public static <T> void algorithmus3(BinaryKnoten<T> wurzel) {
     // Aufrufen der beiden Algorithmus-Spezifischen Prozeduren

@@ -55,10 +55,7 @@ gezeichnet.
 
 \subsection{Implementierung in Java}
 Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur
-implementiert. Zusätzlich wurden Methoden hinzugefügt, die beispielsweise
-ein einfaches Traversieren über den Baum ermöglichen oder zum Setzen von Kindern.
-
-Diese Klasse sieht wie folgt aus:
+implementiert.
 
 \begin{lstlisting}[caption=Vereinfachte Implementierung der Knotenklasse, label=code:knotenclass]
 class Knoten<T> {
@@ -76,14 +73,17 @@ class Knoten<T> {
 	// Getter, Setter, weitere Hilfsmethoden...
 }
 \end{lstlisting}
-Am Quellcode \ref{code:knotenclass} erkennt man die im vorherigen Kapitel beschriebene Datenstruktur. Die Klasse Knoten beinhaltet genau einen
+
+Am Quellcode \ref{code:knotenclass} lässt sich die implementierte Knoten-Datenstruktur betrachten. Die Klasse Knoten beinhaltet genau einen
 Vater, eine Liste von Kindern, da jeder Knoten mehr als ein Kind haben kann, sowie die Höhe und die Koordinaten. Zusätzlich beinhaltet diese 
 Klasse auch noch die Möglichkeit jedem Knoten Daten mitzugeben. Für das Verständnis des Algorithmus ist dies aber nicht notwendig und wird
-im Folgenden nicht mehr berücksichtigt. Nachdem diese Klasse erstellt wurde, kann der Algorithmus als Prozedur implementiert werden.
+im Folgenden nicht mehr berücksichtigt. Ferner wurden Hilfsmethoden, zum Beispiel \glqq traversPreOrder\grqq{}, implementiert. Nachdem diese Klasse erstellt wurde, 
+kann der Algorithmus als Prozedur implementiert werden.
 Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq{} erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
 und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
 kann wie folgt aussehen:
 
+\newpage
 \begin{lstlisting}[caption=Implementierung des naiven Algorithmus, label=code:naiverAlgo]
 public static <T> void algorithmus1(Knoten<T> wurzel, int maximaleHoehe) {
 	// Initialisierung des Positions-Array
@@ -109,7 +109,7 @@ Ebenenspezifische nächste X-Position im Positions-Array um eins inkrementiert.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=7cm, height=10cm]{abbildungen/baum_algo_1}
+    \includegraphics[width=5.5cm, height=8cm]{abbildungen/baum_algo_1}
     \caption{Gezeichneter Baum durch den ersten Algorithmus}
     \label{pic:baum_algo_1} 
 \end{figure}
