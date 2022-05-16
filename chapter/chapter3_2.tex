@@ -115,7 +115,21 @@ wird ferner die X-Koordinate und der Modifikator jedes einzelnen Knoten bestimmt
 wurzel.traversPostOrder(k -> {
     BinaryKnoten knoten = (BinaryKnoten) k;
 
-    // Position / Modifikator des Knoten bestimmen ...
+    // X-Koordinate bestimmen
+    if(istBlatt)
+		place = nextPos[h];
+	else if(knoten.getLeft() == null)
+		place = knoten.getRight().getX() - 1;
+	else if(knoten.getRight() == null)
+		place = knoten.getLeft().getX() + 1;
+	else
+		place = (knoten.getLeft().getX() + knoten.getRight().getX()) / 2;	
+    
+	// setzen alle Variablen
+	modifier[h] = Math.max(modifier[h], nextPos[h] - place);
+	knoten.setX(place + (istBlatt ? 0 : modifier[h]));
+	nextPos[h] = knoten.getX() + 2;
+	knoten.setModifier(modifier[h]);
 });
 \end{lstlisting}
 
