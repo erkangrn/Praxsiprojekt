@@ -1,126 +1,32 @@
-\chapter{Algorithmen zum Zeichnen von Bäumen}
+\chapter{IBM Rational DOORS}
 \label{chap:kapitel3}
-Im Folgenden werden drei verschiedene Algorithmen zum Zeichnen von Bäumen im Ebenen-Layout vorgestellt. Wie in Kapitel \ref{chap:einleitung}
-bereits angekündigt, wird jeweils auf den Ablauf, einer eigenen Implementierung in Java und auf die Vor- und Nachteile eingegangen. Ziel wird
-es sein, Verständnis für diese Algorithmen zu schaffen.
 
-\section{Naiver Algorithmus von Wetherell und Shannon}
-
-Das Paper \glqq Tidy Drawings of Trees\grqq{} von Charles Wetherell und Alfred Shannon aus dem Jahre 1979, 
-welches im IEEE Trans. Softw. Eng. erschienen ist, handelt von verschiedenen Algorithmen zum Zeichnen von Bäumen \cite[]{q1}.
-Der erste Algorithmus, der von den beiden Autoren beschrieben und vorgestellt wird, ist ein naiver Algorithmus 
-zum Zeichnen von Bäumen. Dieser Algorithmus soll dabei zwei Anforderungen erfüllen. Die erste Anforderung wird dabei
-an die Ästhetik des gezeichneten Baumes gestellt. 
-\begin{quotation}
-	\textit{Aesthetic 1:} Nodes of a tree at the same height should lie
-	along a straight line, and the straight lines defining the levels
-	should be parallel \cite[S. 515]{q1}.
-\end{quotation}
-Alle Knoten, die dieselbe Höhe haben, sollen sich auf einer horizontalen
-Linie befinden. Jede Höhe hat dabei eine Linie, auf welcher sich die Knoten befinden sollen und diese Linien sollen alle
-parallel zueinander sein. Außerdem soll der Algorithmus beim Zeichnen eines Baumes ein physikalisches Limit einhalten:
-\begin{quotation}
-	\textit{Physical limit:} Tree drawings should occupy as little width
-	as possible (the height of a tree drawing is fixed by the tree
-	itself) \cite[S. 515]{q1}.
-\end{quotation}
-Das bedeutet, dass der Algorithmus möglichst schmale Bäume zeichnen soll. Jedoch wird die Höhe des Baumes durch diese Anforderungen
-nicht eingeschränkt. Stattdessen ist die Höhe durch den Baum vorgegeben \cite[S. 515]{q1}.
-
-Die Naivität des Algorithmus besteht in seiner Simplizität. Dieser Algorithmus soll nur die beiden oberen Anforderungen erfüllen,
-während die anderen Algorithmen, neben den beiden oberen, noch weitere Anforderungen erfüllen müssen.  
-
-\label{chap:kapitel3_1_Ablauf}
-\subsection{Ablauf}
-Ziel dieses Algorithmus ist es, jedem Knoten eine genaue X- und Y-Koordinate in Abhängigkeit ihrer Beziehung zu ihrem Vor- und Nachgängern
-zuzuordnen. Dafür muss eine Datenstruktur definiert werden, welche dies ermöglicht. Jeder Knoten muss sowohl seinen Vater als auch eventuelle
-Kinder kennen. Zudem muss jeder Knoten in der Lage sein, seine X-Koordinate sowie seine Höhe und Y-Koordinate zu speichern. Da jeder Knoten
-nun seine Beziehungen kennt, kann über dem Baum traversiert werden. Zudem kann jeder Knoten nun so seine Koordinaten speichern.
-
-Dieser Algorithmus besitzt zwei Eingabeparameter: Die Wurzel und die Höhe des Baumes.
-Die Wurzel muss hierbei vom Typ der zuvor definierten Struktur sein. Zu Beginn wird eine Variable definiert:
-Ein Array (später Positions-Array genannt), welches die jeweils nächste freie X-Position einer Ebene des Baums beinhaltet.
-Hiernach wird über die Baumstruktur der Wurzel, in der Pre-Order-Traversierung, traversiert.
-Nun werden die X- und Y-Attribute der Knoten wie folgt bestimmt und gesetzt:
-
-Der derzeitige Knoten bekommt als X-Position den Wert aus dem Positions-Array, in Abhängigkeit von seiner Höhe im Baum.
-Danach wird die Zahl im Positions-Array inkrementiert. Die Y-Position des Knoten wird nun in Abhängigkeit zur Höhe des Knoten
-mit der folgenden Formel berechnet: $$y := 2 * HoeheDesKnotens + 1$$
-
-Dieses Vorgehen wird nun für alle Knoten in dem Baum wiederholt. 
-
-Nach dem Durchlaufen aller Knoten des Baumes sind alle X- und Y-Koordinaten gesetzt und der Baum kann gezeichnet werden.
-Hierbei bekommen die Knoten eine feste vordefinierte Größe. Die Kanten werden dann als Linien zwischen Vätern und Kindern 
-gezeichnet.
-
-\subsection{Implementierung in Java}
-Dieser Algorithmus wurde in Java implemeniert. Hierzu wurde die zuvor vorgestellte Datenstruktur
-implementiert.
-
-\begin{lstlisting}[caption=Vereinfachte Implementierung der Knotenklasse, label=code:knotenclass]
-class Knoten<T> {
-	private int x, y;
-	private T daten;
-	private int hoehe;
-	
-	private Knoten<T> vater;
-	protected List<Knoten<T>> kinder;
-
-	public void traversPreOrder(Consumer<? super Knoten<? super T>> cons) { /*...*/ }
-
-	setKinder(Knoten<T>... childs) { /*...*/ }
-
-	// Getter, Setter, weitere Hilfsmethoden...
-}
-\end{lstlisting}
-
-Am Quellcode \ref{code:knotenclass} lässt sich die implementierte Knoten-Datenstruktur betrachten. Die Klasse Knoten beinhaltet genau einen
-Vater, eine Liste von Kindern, da jeder Knoten mehr als ein Kind haben kann, sowie die Höhe und die Koordinaten. Zusätzlich beinhaltet diese 
-Klasse auch noch die Möglichkeit jedem Knoten Daten mitzugeben. Für das Verständnis des Algorithmus ist dies aber nicht notwendig und wird
-im Folgenden nicht mehr berücksichtigt. Ferner wurden Hilfsmethoden, zum Beispiel \glqq traversPreOrder\grqq{}, implementiert. Nachdem diese Klasse erstellt wurde, 
-kann der Algorithmus als Prozedur implementiert werden.
-Hierzu wurde eine Prozedur namens \glqq algorithmus1\grqq{} erstellt, die zwei Parameter besitzt: Der Wurzel-Knoten
-und die Höhe des Baums. Die weitere Implementierung wird, wie zuvor beschrieben, durchgeführt. Eine mögliche Implementierung
-kann wie folgt aussehen:
-
-\newpage
-\begin{lstlisting}[caption=Implementierung des naiven Algorithmus, label=code:naiverAlgo]
-public static <T> void algorithmus1(Knoten<T> wurzel, int maximaleHoehe) {
-	// Initialisierung des Positions-Array
-	int[] nextX = new int[maximaleHoehe];
-	Arrays.fill(nextX, 1);
-	
-	// Ueber den Baum traversieren und X/Y-Koordinate setzen
-	wurzel.traversPreOrder(knoten -> {
-		knoten.setX(nextX[knoten.getHoehe()]);
-		knoten.setY(2 * knoten.getHoehe() + 1);
-		
-		// Setzen der naechst-freien Position
-		nextX[knoten.getHoehe()] += 1;
-	});
-}
-\end{lstlisting}
-
-Die Implementierung dieses Algorithmuses folgt dem zuvor beschriebenen Ablauf. So kann am Quellcode \ref{code:naiverAlgo} betrachtet werden, dass zu
-Beginn der Prozedur das Positions-Array, hier \glqq nextX\grqq{} benannt, mit Einsen befüllt wird. Folgend wird nun über die Knoten-Datenstruktur
-in der Pre-Order traversiert. Dafür wurde die Knoten-Instanz-Methode namens \glqq traversPreOrder\grqq{}, mit einem Consumer als Parameter, aufgerufen.
-In dem übergebenen Consumer, hier als Lamda-Ausdruck, wird die X- als auch die Y-Koordinate bestimmt. Ferner wird die
-Ebenenspezifische nächste X-Position im Positions-Array um eins inkrementiert.
+Rational DOORS ist ein Anforderungsmanagement-Tool des US-amerikanischen IT-Unternehmens IBM. Das Akronym DOORS steht für Dynamic Object-Oriented Requirements System \cite[]{q5}.
+Dieses Tool wird genutzt zur Dokumentation und Verwaltung von Anforderungen. Die DOORS Datenbank ist dabei hierarchisch aufgebaut und besteht aus drei verschiedenen Elementen, nämlich den 
+Projekten, den Ordnern und den Modulen. Dieser Aufbau ist in Abbildung \ref*{fig:Doors GUI} zu erkennen. Projekte und Ordner werden dafür genutzt, um die Daten innerhalb der DOORS Datenbank 
+zu organisieren und zu strukturieren. Projekte sind in der GUI erkennbar durch ein blaues Ordner-Symbol, während Ordner durch ein gelbes Ordner-Symbol gekennzeichnet werden. Dies kann ebenfalls der 
+Abbildung \ref*{fig:Doors GUI} entnommen werden. Projekte und Ordner unterscheiden sich vorallem dadurch, dass die Namen von Projekten in der gesamten Datenbank eindeutig sein müssen. 
+Die Position aller Daten innerhalb eines Projekts ist durch den Pfad, welcher mit dem Projekt beginnt, festgelegt \cite[]{q6}. Die Funktionsweise von Ordnern hingegen, ist vergleichbar 
+zu den Ordner im Windows Explorer.     
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=5.5cm, height=8cm]{abbildungen/baum_algo_1}
-    \caption{Gezeichneter Baum durch den ersten Algorithmus}
-    \label{pic:baum_algo_1} 
+    \includegraphics[width = \textwidth]{abbildungen/IBM Doors.PNG}
+    \caption{GUI der IBM Rational Doors Anwendung}
+    \label{fig:Doors GUI}
 \end{figure}
 
-\subsection{Vor- und Nachteile}
-Die Abbildung \ref{pic:baum_algo_1} zeigt einen Baum, welcher von unserer Java-Implementierung des naiven Algorithmus von Wetherell und Shannon
-gezeichnet wurde.
-Auf dem ersten Blick wird deutlich, dass dieser gezeichnete Baum maximal schmal ist, da jeder Knoten so weit links wie möglich steht.
-Diese Eigenschaft wird aber nur auf Kosten der Übersichtlichkeit erfüllt. Bei der Beziehung zwischen H als Vater und I und J als Kind wird 
-deutlich, dass der von diesem Algorithmus gezeichnete Baum unübersichtlich ist. Außerdem sagt die Position der Knoten nichts über die Daten 
-aus, welche die Knoten beinhalten könnten. Egal ob die Daten, welche I und J beinhalten, größer oder kleiner als die Daten in H wären, 
-sie würden trotzdem an der selben Position stehen. 
-Deshalb definieren Wetherell und Shannon weitere Anforderungen, die Algorithmen zum Zeichnen von Bäumen erfüllen müssen.
+Die Module in DOORS sind die Elemente, welche die Anforderungen in einer tabellarischen Form beinhalten. Abbildung \ref*{fig:Doors Modul} zeigt ein geöffnetes Modul in DOORS. Dort ist zu erkennen,
+dass die einzelnen Spalten die Attribute darstellen, die Zeilen werden Objekte genannt. Zudem hat der User die Möglichkeit oben links neben dem Feld "View" eine View auszuwählen. Mithilfe einer View 
+ist der User in der Lage durch Filter, Sortierungen, Ein- bzw. Ausblenden von Spalten u.Ä. sich nur das anzeigen zu lassen, was für ihn aktuell relevant ist. Rechts neben dem Text des Objekts sind 
+zwei verschiedene Pfeile zu erkennen. Diese Pfeile zeigen an, dass Links, also Verbindungen von oder zu diesem Objekt bestehen. Links sind essentiell für das Requirements Tracing, also für die
+Verfolgung von Anforderungen. Dadurch wird deutlich von wo eine Anforderung herkommt oder wo sie ebenfalls genutzt wird. Der rote Pfeil mit der Spitze nach rechts ist dabei ein Out-Link, also eine
+Verbindung von dem Objekt zu einem anderen Objekt. Der gelbe Pfeil mit der Spitze in die entgegengesetzte Richtung symbolisiert einen In-Link, also eine Verbindung von einem anderen Objekt zu diesem 
+Objekt. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{abbildungen/Modul in Doors.PNG}
+    \caption{Modul in DOORS}
+    \label{fig:Doors Modul}
+\end{figure}
