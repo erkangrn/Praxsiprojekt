@@ -12,10 +12,10 @@
 \usepackage{amsfonts}                % Mathematische Schriftarten
 \usepackage{amssymb}                 % Mathematische Symbole
 \usepackage{amsthm}                  % Erweiterung der Theorem-Umgebungen
-\usepackage[]{units}					 % für \unit-Befehl
+\usepackage[]{units}				 % für \unit-Befehl
 %\usepackage[amssymb]{siunits}		 % für SI-Einheiten (amssymb definiert den Befehl \square des amssymb Packages um. Ist dies nicht gewünscht kann die Option squaren verwendet werden. Dann muss für die SI-Einheiten \squaren anstatt \square verwendet werden.)
 
-%\usepackage{fancyhdr}                % Erweiterte Konfiguration von Kopf/Fußzeile
+%\usepackage{fancyhdr}               % Erweiterte Konfiguration von Kopf/Fußzeile
 \usepackage{hyperref}                % Querverweise, Hyperlink, pdf-Konfiguration, etc.
 
 \usepackage{float}                   % Selbstdefinierte Floating-Umbgebungen
@@ -24,13 +24,18 @@
 
 \usepackage{algpseudocode}           % Algorithmen als Pseudocode (basiert auf algorithmicx)
 \usepackage{listings}                % Quellcode-Satz (z.B. mit Syntax-Hervorhebung)
+\lstset { %
+    language=C++,
+    backgroundcolor=\color{black!5}, % set backgroundcolor
+    basicstyle=\footnotesize,        % basic font setting
+}
 
 \usepackage[pdftex,
-%draft							%Figures werden nur als Platzhalter eingeblendet
-]{graphicx}						% Erweiterte Unterstützung von Graphiken
+%draft							     %Figures werden nur als Platzhalter eingeblendet
+]{graphicx}						     % Erweiterte Unterstützung von Graphiken
 \usepackage{textpos}                 % Beliebig platzierte Textboxen
 \usepackage{xcolor}                  % TeX-Engine-unabhängige Definition von Farben
-\usepackage[printonlyused]{acronym}
+\usepackage{acronym}
 
 
 \usepackage{pdfpages}
@@ -39,6 +44,6 @@
 \usepackage{todonotes}
 \usepackage{tabulary}
 \usepackage{IEEEtrantools}
-
+\usepackage{multicol}
 \usepackage{graphicx}
 

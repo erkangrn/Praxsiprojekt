@@ -1,0 +1,37 @@
+\section{Data Preparation}
+
+Mit den Erkenntnissen aus der vorherigen Phase beginnt nun die Aufbereitung der Daten. Jede Komponente bzw. jedes System hat im Project RA Application Conditions einen Ordner \glqq 10\char95 Project
+Answers\grqq{}. Nutzt ein Projekt nun beispielsweise das Achszähler-System AzS350U und hat die Anwendungsregeln des Systems bewertet, dann müssen diese bewerteten Anwendungsregeln in ein neues Modul 
+in dem \glqq 10\char95 Project Answers\grqq{} Ordner des Achszähler-Systems geschrieben werden. Mit den Modulen, die die bewerteten Anwendungsregeln der einzelnen Komponenten und Systeme beinhalten,
+kann dann das KI-System angelernt werden. 
+
+Um das zu erreichen, müssen zunächst die 115 Module genauer untersucht werden. Dabei muss geprüft werden, ob diese Module die Anwendungsregeln so bewertet haben, wie es das Process Manual vorgibt.
+Dafür muss die Iteration aus \ref*{lst:searchInLinks} erweitert werden. Es muss zusätzlich geprüft werden, ob das Modul die Attribute REQ Status bzw. REQ Progress besitzt und ob diese auch 
+ausgefüllt sind. 
+
+\begin{lstlisting}[caption={Suche nach bewerteten Anwendungsregeln},captionpos=b, label = lst:searchARSolutions]                                                       
+if(hasAttribute("REQ Status", mod) 
+&& hasAttribute("REQ Statement", mod)){  
+    szProgress = o."REQ Status""";
+    szStatement = o."REQ Statement";
+    if(length(szProgress)>1 && length(szStatement)>1){ 
+        put(slResults, fullName mCheck, fullName mCheck)
+    }
+}else if (hasAttribute("REQ Progress", mod) 
+&& hasAttribute("REQ Statement", mod)){
+    szProgress = o."REQ Progress""";
+    szStatement = o."REQ Statement";
+    if(length(szProgress)>1 && length(szStatement)>1){ 
+        put(slResults, fullName mCheck, fullName mCheck)
+        // ...
+\end{lstlisting}
+
+Übrig bleiben danach 41 Module aus 34 Projekten, welche nicht nur die Anwendungsregeln importiert, sondern auch nach den Vorgaben des Process Manuals bewertet haben.  
+
+% TODO
+
+- Zwischenschritt: für jedes Projekt ein Modul in Sandbox
+- dabei darauf achten, dass nur relevante Attribute kopiert werden und keine old versions
+- diese dann aufteilen, auf einzelne Komponenten/Systeme durch Links
+- die neuen Module dann in Projects Answers einfügen
+- FERTIG

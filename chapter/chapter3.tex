@@ -17,12 +17,12 @@ zu den Ordner im Windows Explorer.
 \end{figure}
 
 Die Module in DOORS sind die Elemente, welche die Anforderungen in einer tabellarischen Form beinhalten. Abbildung \ref*{fig:Doors Modul} zeigt ein geöffnetes Modul in DOORS. Dort ist zu erkennen,
-dass die einzelnen Spalten die Attribute darstellen, die Zeilen werden Objekte genannt. Zudem hat der User die Möglichkeit oben links neben dem Feld "View" eine View auszuwählen. Mithilfe einer View 
+dass die einzelnen Spalten die Attribute darstellen, die Zeilen werden Objekte genannt. Zudem hat der User die Möglichkeit oben links neben dem Feld \glqq View\grqq{} eine View auszuwählen. Mithilfe einer View 
 ist der User in der Lage durch Filter, Sortierungen, Ein- bzw. Ausblenden von Spalten u.Ä. sich nur das anzeigen zu lassen, was für ihn aktuell relevant ist. Rechts neben dem Text des Objekts sind 
 zwei verschiedene Pfeile zu erkennen. Diese Pfeile zeigen an, dass Links, also Verbindungen von oder zu diesem Objekt bestehen. Links sind essentiell für das Requirements Tracing, also für die
 Verfolgung von Anforderungen. Dadurch wird deutlich von wo eine Anforderung herkommt oder wo sie ebenfalls genutzt wird. Der rote Pfeil mit der Spitze nach rechts ist dabei ein Out-Link, also eine
 Verbindung von dem Objekt zu einem anderen Objekt. Der gelbe Pfeil mit der Spitze in die entgegengesetzte Richtung symbolisiert einen In-Link, also eine Verbindung von einem anderen Objekt zu diesem 
-Objekt. 
+Objekt. Eine weitere Form von Modulen sind die Link-Module. Diese werden dafür verwendet, Informationen über Links zu speichern. 
 
 \begin{figure}[H]
     \centering
@@ -30,3 +30,7 @@ Objekt.
     \caption{Modul in DOORS}
     \label{fig:Doors Modul}
 \end{figure}
+
+Neben der Arbeit mittels der grafischen Benutzeroberfläche bietet die \ac*{DXL} eine weitere Möglichkeit um mit DOORS zu arbeiten. \ac*{DXL} ist dabei eine Scripting-Sprache, deren
+Syntax der von C und C++ ähnelt und dafür genutzt werden kann, um Skripte zu erstellen. Mit diesen Skripten können beispielsweise Module oder Ordner erstellt werden, sowie Objekte angelegt und 
+editiert werden \cite[]{q7}. 
