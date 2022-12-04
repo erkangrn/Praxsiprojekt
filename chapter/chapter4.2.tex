@@ -26,7 +26,39 @@ if(hasAttribute("REQ Status", mod)
         // ...
 \end{lstlisting}
 
-Übrig bleiben danach 41 Module aus 34 Projekten, welche nicht nur die Anwendungsregeln importiert, sondern auch nach den Vorgaben des Process Manuals bewertet haben.  
+Übrig bleiben danach 41 Module aus 34 Projekten, welche nicht nur die Anwendungsregeln importiert, sondern auch nach den Vorgaben des Process Manuals bewertet haben. Als Zwischenschritt wurde daraufhin
+für jedes Projekt ein Modul in meiner Sandbox erstellt. In diesem Modul wurden dann alle bewerteten Anwendungsregeln reingeschrieben. Dabei musste darauf geachtet werden, dass auschließlich die
+Anwendungsregeln in das Modul geschrieben wurden und keine Überschriften oder Ähnliches. Zudem durften nur die relevanten Attribute in dem neuen Modul stehen. Alle weiteren Attribute dürfen nicht
+hinzugefügt werden, da diese für das Bewerten von Anwendungsregeln irrelevant sind und die Module und somit den schlussendlichen Datensatz, welcher zum Trainieren des KI-Systems verwendet werden soll,
+unnötig groß machen würden. Zudem muss, wie in Kapitel \ref*{chap:DataUnderstanding} beschrieben, überprüft werden, ob sich die Anwendungsregel unter dem Punkt 
+\glqq Old Version Objects, to be reviewed and deleted: \grqq{} befindet. Dafür muss über alle Väter eines Objekts iteriert werden und geprüft werden, ob die Überschrift eines Objekts 
+\glqq Old Version Objects, to be reviewed and deleted: \grqq{} ist. Der Quellcode \ref*{lst:checkOld} zeigt eine Möglichkeit, bei der eine Boolean-Variable auf true gesetzt wird, falls ein Objekt
+veraltet ist. Diese Objekte werden dann nicht in das neue Modul geschrieben.
+
+\begin{lstlisting}[caption={Prüfen, ob Objekt veraltet ist}, captionpos=b, label = lst:checkOld] 
+for obj in entire mod do{ 
+    oParent = parent(obj)
+    bOldVersion = false;
+    while (oParent != null){
+        if (oParent."Object Heading""" ==  "Old Version Objects, to be reviewed and deleted:"){
+            bOldVersion = true;
+        }
+        oParent = parent(oParent)
+    }
+\end{lstlisting}
+
+Abbildung \ref*{fig:SolutionsModul} zeigt, wie ein Modul für ein Projekt dann aussieht. Erkennbar ist, dass dort lediglich die relevanten Attribute gespeichert werden. Zudem wird ein Out-Link auf die
+Anwendungsregel unter RA Application Conditions gesetzt, damit nachverfolgt werden kann, von wo die Anwendungsregel ursprünglich stammt. Des Weiteren besteht der Name des Moduls aus dem Namen
+des Projekt sowie der Endung \glqq \char95 Solutions\grqq{}. Dadurch wird sichergestellt, dass die Information darüber, von welchem Projekt die bewertete Anwendungsregel stammt, erhalten bleibt.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = \textwidth]{abbildungen/Solutions.PNG}
+    \caption{Modul eines Projekts}
+    \label{fig:SolutionsModul}
+\end{figure}
+
+
 
 % TODO
 
