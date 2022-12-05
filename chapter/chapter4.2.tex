@@ -49,7 +49,7 @@ for obj in entire mod do{
 
 Abbildung \ref*{fig:SolutionsModul} zeigt, wie ein Modul für ein Projekt dann aussieht. Erkennbar ist, dass dort lediglich die relevanten Attribute gespeichert werden. Zudem wird ein Out-Link auf die
 Anwendungsregel unter RA Application Conditions gesetzt, damit nachverfolgt werden kann, von wo die Anwendungsregel ursprünglich stammt. Des Weiteren besteht der Name des Moduls aus dem Namen
-des Projekt sowie der Endung \char95 Solutions. Dadurch wird sichergestellt, dass die Information darüber, von welchem Projekt die bewertete Anwendungsregel stammt, erhalten bleibt.
+des Projekts, sowie der Endung \char95 Solutions. Dadurch wird sichergestellt, dass die Information darüber, von welchem Projekt die bewertete Anwendungsregel stammt, erhalten bleibt.
 
 \begin{figure}[H]
     \centering
@@ -59,9 +59,9 @@ des Projekt sowie der Endung \char95 Solutions. Dadurch wird sichergestellt, das
 \end{figure}
 
 Im nächsten Schritt müssen diese Solution-Module der einzelnen Projekte noch weiter aufgeteilt werden. Durch den Out-Link jedes Objekts kann geprüft werden, von welcher Komponente oder System die
-Anwendungsregel stammt. Daraufhin müssen alle Anwendungsregeln eines Projekts, die von der selben Komponente oder vom selben System stammen in ein eigenes Modul ausgegliedert werden, welches dann
+Anwendungsregel stammt. Daraufhin müssen alle Anwendungsregeln eines Projekts, die von der selben Komponente oder vom selben System stammen, in ein eigenes Modul ausgegliedert werden, welches dann
 in den Project Answers Ordner der Komponente oder des Systems verschoben wird. Dafür wird über alle Objekte im Solution-Modul eines Projekts iteriert. Jedes Objekt wird dann 
-in ein Modul kopiert, dessen Name sich aus dem Projektnamen sowie des Namens der Komponente oder des Systems. Letzterer Name wird dabei aus dem Out-Link übernommen. Diese Module müssen dann 
+in ein Modul kopiert, dessen Name sich aus dem Projektnamen, sowie des Namens der Komponente oder des Systems zusammensetzt. Letzterer Name wird dabei aus dem Out-Link übernommen. Diese Module müssen dann 
 zum Schluss in den jeweilegen Project Answers Ordner verschoben werden.
 
 \begin{figure}[H]
@@ -72,8 +72,8 @@ zum Schluss in den jeweilegen Project Answers Ordner verschoben werden.
 \end{figure}
 
 Bevor die Module verschoben werden, wird vorher der Datensatz zum Anlernen des KI-Systems im .csv-Format erstellt. Dieser
-Schritt wird eingeschoben, da zu diesem Zeitpunkt die Module zentral in meiner Sandbox liegen und es somit einfacher ist über all diese Module zu iterieren. Dabei wird wieder über jedes Objekt
-von jedem Modul iteriert und dabei der Objekt Text, der Status sowie das Statement in eine Variable vom Typ String geschrieben. Bei dem Objekt Text und bei dem Statement müssen alle Kommata entfernt
+Schritt wird eingeschoben, da zu diesem Zeitpunkt die Module zentral in meiner Sandbox liegen und es somit einfacher ist, über all diese Module zu iterieren. Dabei wird wieder über jedes Objekt
+von jedem Modul iteriert und dabei der Objekt Text, der Status, sowie das Statement in eine Variable vom Typ String geschrieben. Bei dem Objekt Text und bei dem Statement müssen alle Kommata entfernt
 werden, da diese sonst zu Problemen bei der .csv-Datei führen würden. Dafür wurde eine Methode erstellt, die alle Kommata eines Textes entfernt. Anschließend werden die drei Variablen an eine
 String-Variable konkateniert, welche am Ende jedes Moduls in die .csv-Datei geschrieben wird. Für das Schreiben in diese Datei musste ebenfalls eine weitere Methode geschrieben werden. 
 Der String, welcher in die Datei geschrieben wird, hat dann die Form:
