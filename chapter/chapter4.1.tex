@@ -2,12 +2,12 @@
 \label{chap:DataUnderstanding}
 
 In der Baumansicht auf der linken Seite der Abbildung \ref*{fig:Doors GUI} befindet sich ein Projekt mit dem Namen \glqq RA Application Conditions\grqq{}. In diesem Projekt befinden sich Module, welche
-Anwendungsregeln von diversen Komponenten beinhalten. Dafür wurde ein Script in \ac*{DXL} geschrieben, welches über alle Module innerhalb des Projekts iteriert. Wenn das aktuelle Element ein Modul ist,
+Anwendungsregeln von diversen Komponenten beinhalten. Dafür wurde ein Script in \acs{DXL} geschrieben, welches über alle Module innerhalb des Projekts iteriert. Wenn das aktuelle Element ein Modul ist,
 muss dieses geöffnet werden und falls dieses nicht NULL ist muss über jedes Objekt in diesem Modul iteriert werden. Bei jedem Objekt muss daraufhin über alle In-Links iteriert werden. Über diese 
 In-Links ist es möglich das Quellmodul zu bestimmen, also das Modul, von dem der Link kommt. Diese Quellmodule sind potentiell relevante Module für das Anlernen des KI-Systems. Nach dem Process Manual für
 Anwendungsregeln der Siemens Mobility GmbH \cite[S.32]{q2} muss das Link-Modul des Links den Namen \glqq 42\char95 reference\char95 of\grqq{} tragen. Bei älteren Projekten jedoch wurde als Name 
 \glqq reference\char95 of\grqq{} genutzt. Zudem kann der Fall auftreten, dass Quellmodule in einer Sandbox eines Mitarbeiters liegen. Diese Module dürfen nicht berücksichtigt werden, da sie kein Teil
-von Projekten der Siemens Mobility GmbH sind. Alle Quellmodule, die den Anforderungen entsprechen werden, in eine Skiplist eingefügt. Skiplisten sind eine Datenstrukturen, welche aus einem 
+von Projekten der Siemens Mobility GmbH sind. Alle Quellmodule, die den Anforderungen entsprechen, werden in eine Skiplist eingefügt. Skiplisten sind eine Datenstrukturen, welche aus einem 
 Key-Value-Paar bestehen. 
 
 \begin{lstlisting}[caption={Iterieren über alle Module von RA Application Conditions},captionpos=b, label = lst:searchInLinks]
