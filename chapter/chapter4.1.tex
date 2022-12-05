@@ -2,12 +2,12 @@
 \label{chap:DataUnderstanding}
 
 In der Baumansicht auf der linken Seite der Abbildung \ref*{fig:Doors GUI} befindet sich ein Projekt mit dem Namen \glqq RA Application Conditions\grqq{}. In diesem Projekt befinden sich Module, welche
-Anwendungsregeln von diversen Komponenten beinhalten. Dafür wurde ein Script in \acs{DXL} geschrieben, welches über alle Module innerhalb des Projekts iteriert. Wenn das aktuelle Element ein Modul ist,
+Anwendungsregeln von diversen Komponenten beinhalten. Dafür wurde ein Skript in \acs{DXL} geschrieben, welches über alle Module innerhalb des Projekts iteriert. Wenn das aktuelle Element ein Modul ist,
 muss dieses geöffnet werden und falls dieses nicht NULL ist muss über jedes Objekt in diesem Modul iteriert werden. Bei jedem Objekt muss daraufhin über alle In-Links iteriert werden. Über diese 
-In-Links ist es möglich das Quellmodul zu bestimmen, also das Modul, von dem der Link kommt. Diese Quellmodule sind potentiell relevante Module für das Anlernen des KI-Systems. Nach dem Process Manual für
+In-Links ist es möglich, dass Quellmodul zu bestimmen, also das Modul, von dem der Link kommt. Diese Quellmodule sind potentiell relevante Module für das Anlernen des KI-Systems. Nach dem Process Manual für
 Anwendungsregeln der Siemens Mobility GmbH \cite[S.32]{q2} muss das Link-Modul des Links den Namen \glqq 42\char95 reference\char95 of\grqq{} tragen. Bei älteren Projekten jedoch wurde als Name 
 \glqq reference\char95 of\grqq{} genutzt. Zudem kann der Fall auftreten, dass Quellmodule in einer Sandbox eines Mitarbeiters liegen. Diese Module dürfen nicht berücksichtigt werden, da sie kein Teil
-von Projekten der Siemens Mobility GmbH sind. Alle Quellmodule, die den Anforderungen entsprechen, werden in eine Skiplist eingefügt. Skiplisten sind eine Datenstrukturen, welche aus einem 
+von Projekten der Siemens Mobility GmbH sind. Alle Quellmodule, die den Anforderungen entsprechen, werden in eine Skiplist eingefügt. Skiplisten sind eine Datenstruktur, welche aus einem 
 Key-Value-Paar bestehen. 
 
 \begin{lstlisting}[caption={Iterieren über alle Module von RA Application Conditions},captionpos=b, label = lst:searchInLinks]
@@ -36,7 +36,7 @@ void searchInLinks(Folder f){
 
 Nach dem Iterieren aller Module im Projekt RA Application Conditions lassen sich 115 Module aus 63 Projekten finden, welche einen Link zu Anwendungsregeln besitzen und diese somit importiert haben.
 Diese Projekte mit ihren Modulen sind potentielle Kandidaten für einen Datensatz zum Anlernen des KI-Systems. Als nächsten Schritt müssen diese Module genauer betrachtet werden. Es muss geprüft werden,
-welche Attribute für das Bewerten von Anwendungsregeln relevant sind. Der Quellcode \ref*{lst:getAttribute} zeigt eine Möglichkeit, sich alle Attribute eines Moduls ausgeben zu lassen. 
+welche Attribute für das Bewerten von Anwendungsregeln relevant sind. Der Quellcode \ref*{lst:getAttribute} zeigt eine Möglichkeit, wie alle Attribute eines Moduls ausgegeben werden können.
 Nach dem Process Manual für Anwendungsregeln müssen Projekte, welche Anwendungsregeln importiert haben, die Attribute REQ Status und REQ Statement beinhalten. Das Attribut REQ Status vom Typ einer
 single-enumeration beinhaltet dabei die Bewertung der Anwendungsregel. Die Begründung dafür lässt sich im Attribut REQ Statement in Textform finden\cite[S.14]{q2}. 
 
