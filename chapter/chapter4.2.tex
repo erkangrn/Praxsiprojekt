@@ -27,11 +27,11 @@ if(hasAttribute("REQ Status", mod)
 \end{lstlisting}
 
 Übrig bleiben danach 41 Module aus 34 Projekten, welche nicht nur die Anwendungsregeln importiert, sondern auch nach den Vorgaben des Process Manuals bewertet haben. Als Zwischenschritt wurde daraufhin
-für jedes Projekt ein Modul in meiner Sandbox erstellt. In diesem Modul wurden dann alle bewerteten Anwendungsregeln reingeschrieben. Dabei musste darauf geachtet werden, dass auschließlich die
-Anwendungsregeln in das Modul geschrieben werden und keine Überschriften oder Ähnliches. Zudem durften nur die relevanten Attribute in dem neuen Modul stehen. Alle weiteren Attribute dürfen nicht
+für jedes Projekt ein Modul in meiner Sandbox erstellt. In diesem Modul wurden dann alle bewerteten Anwendungsregeln zusammengestellt. Dabei musste darauf geachtet werden, dass auschließlich die
+Anwendungsregeln in das Modul geschrieben werden und keine Überschriften oder Artefakte. Zudem durften nur die relevanten Attribute in dem neuen Modul stehen. Alle weiteren Attribute dürfen nicht
 hinzugefügt werden, da diese für das Bewerten von Anwendungsregeln irrelevant sind und die Module und somit den schlussendlichen Datensatz, welcher zum Trainieren des KI-Systems verwendet werden soll,
 unnötig groß machen würden. Zudem muss, wie in Kapitel \ref*{chap:DataUnderstanding} beschrieben, überprüft werden, ob sich die Anwendungsregel unter dem Punkt 
-\glqq Old Version Objects, to be reviewed and deleted: \grqq{} befindet. Dafür muss über alle Väter eines Objekts iteriert werden und geprüft werden, ob die Überschrift eines Objekts 
+\glqq Old Version Objects, to be reviewed and deleted: \grqq{} befindet. Dafür muss über alle übergeordneten Objekte eines Objekts iteriert werden und geprüft werden, ob die Überschrift eines Objekts 
 \glqq Old Version Objects, to be reviewed and deleted: \grqq{} ist. Der Quellcode \ref*{lst:checkOld} zeigt eine Möglichkeit, bei der eine Boolean-Variable auf true gesetzt wird, falls ein Objekt
 veraltet ist. Diese Objekte werden dann nicht in das neue Modul geschrieben.
 
@@ -47,7 +47,7 @@ for obj in entire mod do{
     }
 \end{lstlisting}
 
-Abbildung \ref*{fig:SolutionsModul} zeigt, wie ein Modul für ein Projekt dann aussieht. Erkennbar ist, dass dort lediglich die relevanten Attribute gespeichert werden. Zudem wird ein Out-Link auf die
+Abbildung \ref*{fig:SolutionsModul} zeigt, wie ein Modul für ein Projekt dann aussieht. Erkennbar ist, dass dort lediglich relevanten Attribute gespeichert werden. Zudem wird ein Out-Link auf die
 Anwendungsregel unter RA Application Conditions gesetzt, damit nachverfolgt werden kann, von wo die Anwendungsregel ursprünglich stammt. Des Weiteren besteht der Name des Moduls aus dem Namen
 des Projekts, sowie der Endung \char95 Solutions. Dadurch wird sichergestellt, dass die Information darüber, von welchem Projekt die bewertete Anwendungsregel stammt, erhalten bleibt.
 
@@ -98,6 +98,6 @@ writeCSV(szData)
 // ...
 \end{lstlisting}
 
-Nun wurde eine .csv-Datei mit dem finalen Datensatz erstellt, welcher später für das Anlernen eines unterstützenden KI-Systems zum Bewerten von Anwendungsregeln verwendet werden kann.
+Nun wird eine .csv-Datei mit dem finalen Datensatz erstellt, welcher später für das Anlernen eines unterstützenden KI-Systems zum Bewerten von Anwendungsregeln verwendet werden kann.
 Dieser Datensatz umfasst dabei 195.518 bewertete Anwendungsregeln aus Projekten der Siemens Mobility GmbH. Zum Schluss können nun alle Module in ihre entsprechenden Project Answers Ordner 
 verschoben werden. 
